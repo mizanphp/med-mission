@@ -1,2 +1,1 @@
-# Med-Mission
-Online exam system
+# medi-spark
