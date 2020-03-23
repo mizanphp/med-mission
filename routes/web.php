@@ -70,9 +70,13 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
 
 	//Departments
 	Route::resource('departments', 'DepartmentController');
+    Route::get('departments/edit/{department}', 'DepartmentController@edit')->name('department.edit');
+    Route::post('departments/update/{department}', 'DepartmentController@update')->name('department.update');
 
 	//Subjects
 	Route::resource('subjects', 'SubjectController');
+    Route::get('subjects/edit/{subject}', 'SubjectController@edit')->name('subject.edit');
+    Route::post('subjects/update/{subject}', 'SubjectController@update')->name('subject.update');
 
 	//Questions
 	Route::resource('questions', 'QuestionController');
