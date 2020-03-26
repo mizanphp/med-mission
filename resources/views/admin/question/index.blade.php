@@ -54,6 +54,7 @@
                                     <th>Exam</th>
                                     <th>Subject</th>
                                     <th>Question Type</th>
+                                    <th>Student Type</th>
                                     <th>Question</th>
                                     <th>Create At</th>
                                     <th class="text-center">Actions</th>
@@ -66,6 +67,7 @@
                                         <td>{{ ucfirst($question->template->name ?? '')  }}</td>
                                         <td>{{ ucfirst($question->subject->name ?? '') }}</td>
                                         <td>{{ ucfirst($question->questionType->name) }}</td>
+                                        <td>{{ ucfirst($question->studentType->name) }}</td>
                                         <td>{{ ucfirst(Str::limit($question->question, 40)) }}</td>
                                         <td>{{ date_format($question->created_at, 'd-m-Y') }}</td>
                                         <td class="text-center">

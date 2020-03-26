@@ -27,7 +27,18 @@
             @error('subject_id') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
         </div>
 
+        <div class="form-group">
+            <label>Student Type<span class="required-star"> *</span></label>
+            <select class="form-control" name="student_type_id">
 
+                <option value="">Select Student Type</option>
+                @foreach($studentTypes as $studentType)
+                    <option @if( isset($question) and $question->student_type_id == $studentType->id) selected @endif value="{{ $studentType->id }}">{{ $studentType->name }}</option>
+                @endforeach
+
+            </select>
+            @error('student_type_id') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+        </div>
 
         <div class="form-group">
             <label>Question Type<span class="required-star"> *</span></label>
@@ -141,6 +152,7 @@
                 tokensAllowCustom: true,
                 sortable: true,
                 tokensMaxItems: 1,
+                delimiter: false
             });
         });
         @endif
@@ -163,7 +175,8 @@
                 //displayNoResultsMessage: true,
                 tokensAllowCustom: true,
                 sortable: true,
-                tokensMaxItems: 1
+                tokensMaxItems: 1,
+                delimiter: false
             });
 
             // correct_ans naming

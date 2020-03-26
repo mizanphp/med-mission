@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Option;
 use App\Model\QuestionType;
+use App\Model\StudentType;
 use Illuminate\Http\Request;
 use App\Model\Department;
 use App\Model\Subject;
@@ -20,14 +21,17 @@ class QuestionController extends Controller
         $perPage = $request->perPage ?: 10;
         $keyword = $request->keyword;
 
-        $questions = Question::with('template', 'questionType', 'subject');
+        $questions = Question::with('template', 'questionType', 'subject', 'studentType');
 
         if($keyword){
 
             $keyword = '%'.$keyword.'%';
 
             $questions = $questions->where('question', 'like', $keyword)
-                ->orWhere('description', 'like', $keyword);
+                ->orWhere('description', 'like', $keyword)
+                ->orWhereHas('studentType', function ($query) use ($keyword) {
+                    $query->where('name', 'like', $keyword);
+                });
         }
 
         $questions = $questions->latest()->paginate($perPage);
@@ -43,15 +47,17 @@ class QuestionController extends Controller
         $questionTemplates = QuestionTemplate::all();
         $questionTypes = QuestionType::all();
         $subjects = Subject::all();
+        $studentTypes = StudentType::latest()->get();
 
-        return view('admin.question.create', compact('options', 'question_options', 'questionTemplates', 'questionTypes', 'subjects'));
+        return view('admin.question.create', compact('options', 'question_options', 'questionTemplates', 'questionTypes', 'studentTypes', 'subjects'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'question' => 'required',
-            'question_type_id' => 'required'
+            'question_type_id' => 'required',
+            'student_type_id'  => 'required'
         ]);
 
         //check question quantity of question template/exam
@@ -61,13 +67,17 @@ class QuestionController extends Controller
                 ->where('question_template_id', $question_template_id)->count();
 
             if($question_template->total_questions <= $total_questions ){
-                return back()->with('warning', 'Total number of question exceeded.');
+                return back()->with('warning', 'Total number of question exceeded in selected exam.');
             }
         }
 
         if($request->img){
             $image = fileHandlerComponent::imageUpload($request->file('img'), 'img');
             $request['image'] = $image;
+        }
+
+        if(is_null($request->options)){
+            return back()->with('warning', 'No option added!');
         }
 
 
@@ -136,9 +146,10 @@ class QuestionController extends Controller
         $questionTemplates = QuestionTemplate::all();
         $questionTypes = QuestionType::all();
         $subjects = Subject::all();
+        $studentTypes = StudentType::latest()->get();
 
 
-        return view('admin.question.edit', compact('question', 'options', 'question_options', 'subjects', 'questionTemplates', 'questionTypes'));
+        return view('admin.question.edit', compact('question', 'options', 'question_options', 'subjects', 'questionTemplates', 'questionTypes', 'studentTypes'));
     }
 
     public function update(Request $request, Question $question)

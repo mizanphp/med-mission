@@ -54,7 +54,6 @@
                                         <th>Name</th>
                                         {{--<th>Department</th>--}}
                                         <th>Subject</th>
-                                        <th>Student Type</th>
                                         <th>Total Question</th>
                                         <th>Question Assigned</th>
                                         <th>Total Marks</th>
@@ -69,7 +68,6 @@
                                             <td>{{ ucfirst($questionTemplate->name) }}</td>
                                             {{--<td>{{ ucfirst($questionTemplate->department->name) }}</td>--}}
                                             <td>{{ ucfirst($questionTemplate->subject->name) }}</td>
-                                            <td>{{ ucfirst($questionTemplate->studentType->name) }}</td>
                                             <td>{{ ucfirst($questionTemplate->total_questions) }}</td>
                                             <td>{{ ucfirst($questionTemplate->questions_count) }}</td>
                                             <td>{{ ucfirst($questionTemplate->total_marks) }}</td>
