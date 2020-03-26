@@ -63,6 +63,9 @@ class QuestionController extends Controller
         //check question quantity of question template/exam
         if ($question_template_id = $request->question_template_id) {
             $question_template = QuestionTemplate::where('id', $question_template_id)->first();
+
+            $request['subject_id'] = $question_template->subject_id;
+
             $total_questions = Question::with('questions')
                 ->where('question_template_id', $question_template_id)->count();
 
@@ -159,6 +162,22 @@ class QuestionController extends Controller
             //'question_template_id' => 'required',
             'question_type_id' => 'required'
         ]);
+
+        //check question quantity of question template/exam
+        if ($question_template_id = $request->question_template_id) {
+
+            $question_template = QuestionTemplate::where('id', $question_template_id)->first();
+
+            $request['subject_id'] = $question_template->subject_id;
+
+            $total_questions = Question::where('question_template_id', $question_template_id)
+                ->where('id', '!=', $question->id)
+                ->count();
+
+            if($question_template->total_questions <= $total_questions ){
+                return back()->with('warning', 'Total number of question exceeded in selected exam.');
+            }
+        }
 
         if($request->img){
 

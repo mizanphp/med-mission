@@ -101,7 +101,7 @@
                     $single_option .= '<select class="form-control options" name="options[]" multiple>';
                     foreach($options as $option){
                         $selected = (isset($question_option->id) && $question_option->id == $option->id)?'selected':'';
-                        $single_option .= '<option '.$selected.' value='.$option->id.'>'.$option->option.'</option>';
+                        $single_option .= "<option $selected value=\"$option->id\">".htmlspecialchars($option->option, ENT_QUOTES)."</option>";
                     }
                     $single_option .= '</select>';
                     $single_option .= '</div>';
