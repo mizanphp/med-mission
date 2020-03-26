@@ -66,8 +66,7 @@ class QuestionController extends Controller
 
             $request['subject_id'] = $question_template->subject_id;
 
-            $total_questions = Question::with('questions')
-                ->where('question_template_id', $question_template_id)->count();
+            $total_questions = Question::where('question_template_id', $question_template_id)->count();
 
             if($question_template->total_questions <= $total_questions ){
                 return back()->with('warning', 'Total number of question exceeded in selected exam.');
