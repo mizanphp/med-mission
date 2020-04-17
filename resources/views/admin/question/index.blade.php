@@ -76,6 +76,10 @@
                                                 <i class="fa fa-pencil-square-o"></i> <strong>Edit</strong>
                                             </a>
 
+                                            <a href="{{ route('admin.questions.show', $question->id) }}" target="_blank" title="Edit" class="btn btn-info cus_btn">
+                                                <i class="fa fa-eye"></i> <strong>Preview</strong>
+                                            </a>
+
                                             @if(config('app.env') === 'local')
                                                 <a onclick="deleteRow({{ $question->id }})" href="JavaScript:void(0)" title="Delete" class="btn btn-danger cus_btn">
                                                     <i class="fa fa-trash"></i> <strong>Delete</strong>

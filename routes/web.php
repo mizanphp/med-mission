@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
 
 	//Questions
 	Route::resource('questions', 'QuestionController');
+    Route::get('questions/show/{question}', 'QuestionController@show')->name('question.show');
 	Route::get('get-option-list', 'QuestionController@getOptionList')->name('get-option-list');
 
     //Question Template

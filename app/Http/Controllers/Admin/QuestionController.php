@@ -134,11 +134,31 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         $options = $question->options;
-        $question_options = $options->count() > 0 ? $options : ['id' => ''];
 
-        $question = Question::with('template', 'questionType')->first();
+        //$question = Question::find($request->question_id);
 
-        return view('admin.question.view', compact('question', 'question_options'));
+
+        $question_true_correct_answers = $question->trueCorrectAnswers;
+        $true_correct_answers = [];
+        foreach ($question_true_correct_answers as $answer){
+            $true_correct_answers[] = $answer->id;
+        }
+
+        $question_false_correct_answers = $question->falseCorrectAnswers;
+        $false_correct_answers = [];
+        foreach ($question_false_correct_answers as $answer){
+            $false_correct_answers[] = $answer->id;
+        }
+
+        $question_options = $question->options;
+
+        return view('admin.question.view',
+            compact('question',
+                'question_options',
+                'true_correct_answers',
+                'false_correct_answers'
+            )
+        );
     }
 
     public function edit(Question $question)
@@ -276,9 +296,9 @@ class QuestionController extends Controller
         $term = request('term');
 
         $options = Option::where('is_active', 1)
-            ->where('option', 'LIKE', "%$term%")
+            ->where('option', '=', $term)
             ->select('option', 'id')
-            ->take(20)->get();
+            ->take(1)->get();
 
         $new_options = [];
 
