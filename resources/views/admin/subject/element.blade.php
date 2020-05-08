@@ -14,3 +14,19 @@
     </div>
 </div>
 
+<div class="col-lg-7">
+    <div class="form-group">
+        <label>Faculty<span class="required-star"> *</span></label>
+        <select class="form-control" name="department_id">
+            <option value="">Select Faculty</option>
+            @foreach($departments as $department )
+                <option @if( isset($subject) and in_array($department->id, $subject_departments)) selected @endif value="{{ $department->id }}">
+                    {{ $department->name }}
+                </option>
+            @endforeach
+        </select>
+        @error('department_id') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+    </div>
+</div>
+
+

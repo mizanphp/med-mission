@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeNullableFieldToQuestionTables extends Migration
+class CreateDepartmentSubjectTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class ChangeNullableFieldToQuestionTables extends Migration
      */
     public function up()
     {
-        Schema::table('question_templates', function (Blueprint $table) {
-            $table->integer('department_id')->nullable(false)->change();
+        Schema::create('department_subject', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('department_id');
+            $table->bigInteger('subject_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class ChangeNullableFieldToQuestionTables extends Migration
      */
     public function down()
     {
-        Schema::table('question_templates', function (Blueprint $table) {
-            $table->integer('department_id')->nullable(false)->change();
-        });
+        Schema::dropIfExists('department_subjects');
     }
 }

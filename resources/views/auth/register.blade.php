@@ -72,6 +72,18 @@
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <select class="form-control" name="department_id">
+                        <option value="">Select Faculty</option>
+                        @foreach($departments as $department )
+                            <option value="{{ $department->id }}">
+                                {{ $department->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('department_id') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+                </div>
+
                 <button type="submit" class="btn btn-primary block full-width m-b">Registration</button>
 
             </form>

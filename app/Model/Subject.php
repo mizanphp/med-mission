@@ -29,5 +29,9 @@ class Subject extends Model
         }
         return $questions;
     }
+
+    public function departments(){
+        return $this->belongsToMany(Department::class);
+    }
 }
 

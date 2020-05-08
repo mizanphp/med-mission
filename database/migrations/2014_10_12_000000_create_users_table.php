@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('department_id');
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
             $table->bigInteger('role_id')->default(2)->comment('1=admin, 2=student');
