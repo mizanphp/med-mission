@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Department;
 use App\Model\Examination;
 use App\Model\Question;
 use App\Model\QuestionTemplate;
@@ -24,7 +25,10 @@ class PracticeController extends Controller
             return redirect()->route('practice.question');
         }*/
 
-        $subjects = Subject::has('questions')->get();
+        $department = Department::find(Auth::user()->department_id);
+
+        $subjects = $department->subjects()->has('questions')->get();
+
         return view('frontend.practice.select-subject', compact('subjects'));
     }
 

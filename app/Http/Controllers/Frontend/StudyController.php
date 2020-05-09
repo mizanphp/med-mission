@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Department;
 use App\Model\Question;
 use App\Model\QuestionTemplate;
 use App\Model\Subject;
@@ -25,7 +26,11 @@ class StudyController extends Controller
             return redirect()->route('study.question');
         }*/
 
-        $subjects = Subject::has('questions')->get();
+        $department = Department::find(Auth::user()->department_id);
+
+        $subjects = $department->subjects()->has('questions')->get();
+
+        //$subjects = Subject::has('questions')->get();
 
         return view('frontend.study.select-subject', compact('subjects'));
     }

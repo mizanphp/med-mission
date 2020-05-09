@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
     Route::get('examination/summery', 'PracticeController@summery')->name('examination.summery');
     Route::post('examination/finished', 'PracticeController@finished')->name('examination.question.finished');
     Route::get('examination/top-scorer', 'TopScorerController@index')->name('examination.topScorer');
+    Route::get('libraries', 'LibraryController@index')->name('libraries.index');
 });
 
 
@@ -96,6 +97,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
 
     //Payments
     Route::get('payments', 'PaymentController@index')->name('payments.index');
+
+    Route::resource('videos', 'VideoController');
 });
 
 

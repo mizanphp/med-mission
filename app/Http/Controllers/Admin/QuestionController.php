@@ -262,7 +262,7 @@ class QuestionController extends Controller
         $question->delete();
 
         if ($question->image) {
-            $this->fileHandler->imageDelete($question->image);
+            fileHandlerComponent::imageDelete($question->image);
         }
 
         return back()->with('successTMsg', 'Question has been deleted successfully');

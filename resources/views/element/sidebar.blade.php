@@ -71,6 +71,10 @@
                     <a href="{{ route('admin.subjects.index') }}"><i style="font-size: 14px" class="fa fa-book"></i><span class="nav-label">Subjects</span></a>
                  </li>
 
+                <li class="{{ Request::is('videos*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.videos.index') }}"><i style="font-size: 14px" class="fa fa-file-video-o"></i><span class="nav-label">Videos</span></a>
+                </li>
+
                 <li class="{{ Request::is('payments*') ? 'active' : '' }}">
                     <a href="{{ route('admin.payments.index') }}"><i style="font-size: 14px" class="fa fa-money"></i><span class="nav-label">Payments</span></a>
                 </li>
@@ -100,6 +104,10 @@
 
                 <li class="{{ Request::is('examination/top-scorer*') ? 'active' : '' }}">
                     <a href="{{ route('examination.topScorer') }}"><i style="font-size: 18px" class="fa fa-bookmark" aria-hidden="true"></i><span class="nav-label">Top Scorer</span></a>
+                </li>
+
+                <li class="{{ Request::is('libraries') ? 'active' : '' }}">
+                    <a href="{{ route('libraries.index') }}"><i style="font-size: 18px" class="fa fa-book" aria-hidden="true"></i><span class="nav-label">Library</span></a>
                 </li>
             @endif
         </ul>
