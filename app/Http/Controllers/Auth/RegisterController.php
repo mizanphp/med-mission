@@ -53,6 +53,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        if ($data['account_type_id'] == 1) {
+            return Validator::make($data, [
+                'payment_type_id' => ['required']
+            ]);
+        }
+
         return Validator::make($data, [
             'department_id' => ['required'],
             'name'      => ['required', 'string', 'max:255'],
@@ -62,6 +68,8 @@ class RegisterController extends Controller
             'password'  => ['required', 'string', 'min:8', 'confirmed'],
             'account_type_id' => ['required']
         ]);
+
+
     }
 
     /**
@@ -73,7 +81,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         //paid user registration
-        if ($data['account_type_id'] == 1){
+        if ($data['account_type_id'] == 1 && $data['payment_type_id'] == 1){
             $this->redirectTo = 'payment';
         }
 

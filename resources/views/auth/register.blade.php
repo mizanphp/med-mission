@@ -59,7 +59,23 @@
                 </div>
 
                 <div class="form-group">
-                    <select class="form-control" name="account_type_id">
+                    <select class="form-control" name="department_id">
+                        <option value="">Select Faculty</option>
+                        @foreach($departments as $department )
+                            <option value="{{ $department->id }}">
+                                {{ $department->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('department_id')
+                        <span class="help-block m-b-none text-danger">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <select onchange="checkAccountType(this)"  class="form-control" name="account_type_id">
                         <option value="">Account Type</option>
                         <option value="0">Free</option>
                         <option value="1">Paid</option>
@@ -72,16 +88,18 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <select class="form-control" name="department_id">
-                        <option value="">Select Faculty</option>
-                        @foreach($departments as $department )
-                            <option value="{{ $department->id }}">
-                                {{ $department->name }}
-                            </option>
-                        @endforeach
+                <div class="form-group {{ old('account_type_id') == 1 ? '' : 'hidden' }}" id="paymentType">
+                    <select class="form-control" name="payment_type_id">
+                        <option value="">Payment Type</option>
+                        <option value="1">Online</option>
+                        <option value="2">Cash</option>
                     </select>
-                    @error('department_id') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+
+                    @error('payment_type_id')
+                        <span class="help-block m-b-none text-danger">
+                           <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary block full-width m-b">Registration</button>
@@ -90,4 +108,19 @@
         </div>
     </div>
     <div class="col-md-2"></div>
+@endsection
+
+@section('custom-js')
+    <script>
+        function checkAccountType(e) {
+            let account_type = e.value,
+                payment_type = document.getElementById('paymentType'); // 0 free, 1 paid
+
+            if (account_type == 1){
+                payment_type.classList.remove('hidden');
+            }else{
+                payment_type.classList.add('hidden');
+            }
+        }
+    </script>
 @endsection

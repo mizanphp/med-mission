@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
     Route::get('libraries', 'LibraryController@index')->name('libraries.index');
     Route::get('video', 'VideoController@index')->name('video.index');
     Route::get('video/{subject}', 'VideoController@videos')->name('video.video-list');
+    Route::get('events', 'EventController@index')->name('events.index');
 });
 
 

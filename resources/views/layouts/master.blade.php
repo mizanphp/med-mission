@@ -44,6 +44,8 @@
     <!--summernote editor-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 
+    @stack('extra-links')
+
 </head>
 <body>
 

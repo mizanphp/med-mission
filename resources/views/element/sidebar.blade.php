@@ -113,6 +113,10 @@
                 <li class="{{ Request::is('video/*') ? 'active' : '' }}">
                     <a href="{{ route('video.index') }}"><i style="font-size: 18px" class="fa fa-file-video-o" aria-hidden="true"></i><span class="nav-label">Videos</span></a>
                 </li>
+
+                <li class="{{ Request::is('events') ? 'active' : '' }}">
+                    <a href="{{ route('events.index') }}"><i style="font-size: 18px" class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">Events</span></a>
+                </li>
             @endif
         </ul>
     </div>
