@@ -12,26 +12,31 @@
 </div>
 
 <div class="col-lg-7">
-	<div class="form-group">
-    	<label>Name<span class="required-star"> *</span></label>
+    <div class="form-group">
+        <label>Name<span class="required-star"> *</span></label>
         <input type="text" value="{{ isset($video->name) ? $video->name : old('name')}}" name="name" class="form-control">
         @error('name') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
     </div>
 </div>
 
-<div class="col-lg-7">
-    <div id="mamun">
-
-    </div>
-    <div class="form-group">
-        <label>
-            Embed Code<span class="required-star"> *</span>
-            <button type="button" onclick="preview()">Preview</button>
-        </label>
-        <textarea name="embed_code" id="textarea2" class="form-control summernote" rows="2">{{ isset($video->embed_code) ? $video->embed_code : old('embed_code')}} </textarea>
-        @error('embed_code') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-7">
+            <div class="form-group">
+                <label>
+                    Embed Code<span class="required-star"> *</span>
+                    <button class="btn btn-xs btn-primary" type="button" onclick="preview()">Preview</button>
+                </label>
+                <textarea name="embed_code" id="textarea2" class="form-control summernote" rows="2">{{ isset($video->embed_code) ? $video->embed_code : old('embed_code')}} </textarea>
+                @error('embed_code') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <iframe id="preview" style="margin-top: 30px;width: 100%!important;" height="296" class="hidden" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
     </div>
 </div>
+
 
 <div class="col-lg-7">
     <div class="form-group">
@@ -47,7 +52,16 @@
 @section('custom-js')
     <script>
         function preview() {
-            $('#mamun').html($('#textarea2').val());
+
+            $('#preview').attr('src', '');
+
+            if(!$('#textarea2').val().trim()){
+                alert('Embed Code not found');
+                return
+            }
+
+            let src = $('#textarea2').val().split('src="')[1].split('"')[0];
+            $('#preview').attr('src', src).removeClass('hidden');
         }
     </script>
 @endsection

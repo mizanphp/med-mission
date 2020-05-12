@@ -58,6 +58,8 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
     Route::post('examination/finished', 'PracticeController@finished')->name('examination.question.finished');
     Route::get('examination/top-scorer', 'TopScorerController@index')->name('examination.topScorer');
     Route::get('libraries', 'LibraryController@index')->name('libraries.index');
+    Route::get('video', 'VideoController@index')->name('video.index');
+    Route::get('video/{subject}', 'VideoController@videos')->name('video.video-list');
 });
 
 

@@ -33,5 +33,9 @@ class Subject extends Model
     public function departments(){
         return $this->belongsToMany(Department::class);
     }
+
+    public function videos(){
+        return $this->hasMany(Video::class);
+    }
 }
 

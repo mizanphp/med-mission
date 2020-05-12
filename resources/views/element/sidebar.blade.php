@@ -109,6 +109,10 @@
                 <li class="{{ Request::is('libraries') ? 'active' : '' }}">
                     <a href="{{ route('libraries.index') }}"><i style="font-size: 18px" class="fa fa-book" aria-hidden="true"></i><span class="nav-label">Library</span></a>
                 </li>
+
+                <li class="{{ Request::is('video/*') ? 'active' : '' }}">
+                    <a href="{{ route('video.index') }}"><i style="font-size: 18px" class="fa fa-file-video-o" aria-hidden="true"></i><span class="nav-label">Videos</span></a>
+                </li>
             @endif
         </ul>
     </div>

@@ -12,7 +12,21 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $videos = Video::with('subject')->latest()->paginate(2);
+        $perPage = request()->perPage ?: 10;
+        $keyword = request()->keyword;
+
+        $videos = Video::with('subject');
+
+        if ($keyword){
+            $videos = $videos->where('name', 'like', '%'.$keyword.'%')
+                ->orWhere('embed_code', 'like', '%'.$keyword.'%')
+                ->orWhereHas('subject', function ($query) use ($keyword) {
+                    $query->where('name', 'like', '%'.$keyword.'%');
+                });
+        }
+
+        $videos = $videos->latest()->paginate($perPage);
+
         return view('admin.video.index', compact('videos'));
     }
 
