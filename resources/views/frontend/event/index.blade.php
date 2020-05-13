@@ -20,6 +20,12 @@
         .tooltip-inner{
             background-color: #FFC107;
         }
+        .tooltip{
+            opacity: 1;
+        }
+        .fc-button{
+            padding: 0 0.6em;
+        }
     </style>
 @endpush
 
@@ -55,7 +61,7 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: [ 'interaction', 'dayGrid' ],
-                //defaultDate: '2020-02-12',
+                //defaultDate: '2020-03-12',
                 //editable: true,
                 eventLimit: true, // allow "more" link when too many events
                 events: {!! $events !!},
