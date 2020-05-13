@@ -23,6 +23,9 @@
         .tooltip{
             opacity: 1;
         }
+        .tooltip-inner{
+            color: black!important;
+        }
         .fc-button{
             padding: 0 0.6em;
         }
