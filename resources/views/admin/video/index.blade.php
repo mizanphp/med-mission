@@ -65,7 +65,7 @@
                                         <tr>
                                             <td>{{ ucfirst($video->subject->name) }}</td>
                                             <td title="{{ $video->name }}">{{ ucfirst(Str::limit($video->name, 30)) }}</td>
-                                            <td width="40%">{!! $video->embed_code !!}</td>
+                                            <td width="40%">{{ $video->embed_code }}</td>
                                             <td class="text-center">
                                                 <img src="{{ asset('admin/uploads/images/video/'.$video->thumbnail) }}" class="cus_thumbnail">
                                             </td>

@@ -24,7 +24,7 @@
 
                             @include('flash-messages.flash-messages')
 
-                            <div class="table-responsive">
+                            <div class="">
                                 <h2>Welcome to Med Mission</h2>
                             </div>
 

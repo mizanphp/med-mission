@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Department;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,5 +51,9 @@ class User extends Authenticatable
 
     public function scopeNotAdmin($query){
         return $query->where('role_id', '!=', 1);
+    }
+
+    public function department(){
+        return $this->belongsTo(Department::class);
     }
 }

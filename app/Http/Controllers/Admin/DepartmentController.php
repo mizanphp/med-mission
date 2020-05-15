@@ -41,7 +41,7 @@ class DepartmentController extends Controller
 
         Department::create($request->all());
 
-        return redirect()->route('admin.departments.index')->with('successTMsg','Department save successfully');
+        return redirect()->route('admin.departments.index')->with('successTMsg', 'Faculty save successfully');
     }
 
     public function edit(Department $department)
@@ -59,12 +59,12 @@ class DepartmentController extends Controller
 
         $department->update($request->all());
 
-        return redirect(route('admin.departments.index'))->with('successTMsg', 'Department has been updated successfully');
+        return redirect(route('admin.departments.index'))->with('successTMsg', 'Faculty has been updated successfully');
     }
 
     public function destroy(Department $department)
     {
         $department->delete();
-        return back()->with('successTMsg', 'Department has been deleted successfully');
+        return back()->with('successTMsg', 'Faculty has been deleted successfully');
     }
 }

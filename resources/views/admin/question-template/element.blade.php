@@ -8,9 +8,9 @@
 
 <div class="col-lg-7">
     <div class="form-group">
-        <label>Department</label>
+        <label>Faculty</label>
         <select class="form-control" name="department_id">
-            <option value="">Select Department</option>
+            <option value="">Select Faculty</option>
             @foreach($departments as $department )
                <option @if( isset($questionTemplate) and $questionTemplate->department_id == $department->id) selected @endif value="{{ $department->id }}">
                     {{ $department->name }}

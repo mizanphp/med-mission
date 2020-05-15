@@ -20,7 +20,7 @@
                 <div class="ibox float-e-margins">
 
                     <div class="ibox-title">
-                        <h5>Edit Department</h5>
+                        <h5>Edit Video</h5>
                     </div>
 
                     <div class="ibox-content">

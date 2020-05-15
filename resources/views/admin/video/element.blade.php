@@ -27,12 +27,12 @@
                     Embed Code<span class="required-star"> *</span>
                     <button class="btn btn-xs btn-primary" type="button" onclick="preview()">Preview</button>
                 </label>
-                <textarea name="embed_code" id="textarea2" class="form-control summernote" rows="2">{{ isset($video->embed_code) ? $video->embed_code : old('embed_code')}} </textarea>
+                <textarea name="embed_code" id="textarea2" class="form-control" rows="6">{!! isset($video->embed_code) ? $video->embed_code : old('embed_code') !!}</textarea>
                 @error('embed_code') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
             </div>
         </div>
-        <div class="col-lg-5">
-            <iframe id="preview" style="margin-top: 30px;width: 100%!important;" height="296" class="hidden" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="col-lg-3">
+            <iframe id="preview" style="margin-top: 32px;width: 100%!important;" height="130" class="hidden" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 </div>

@@ -56,6 +56,6 @@ class UserController extends Controller
     public function renew()
     {
         Session::put('renew', true);
-        return view('exampleHosted');
+        return view('payment');
     }
 }

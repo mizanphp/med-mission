@@ -5,9 +5,10 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('admin/img/favicon.png') }}" sizes="192x192" />
+    <link rel="apple-touch-icon" href="{{ asset('admin/img/favicon.png') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Med Mission</title>
+    <title>MedMission - First Medical Online Course Preparation Portal</title>
 
     <!--fontowsome-->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">

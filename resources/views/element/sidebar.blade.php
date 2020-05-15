@@ -5,7 +5,7 @@
             <li class="nav-header-custom">
                 <div class="dropdown profile-element">
                     <div style="margin-bottom: 30px;">
-                        <img alt="image" src="{{ asset('admin/img/custom_logo_white-01.png') }}" width="166" />
+                        <img alt="image" src="{{ asset('admin/img/logo.png') }}" width="166" />
                     </div>
 
                     @auth
@@ -64,7 +64,7 @@
                  </li>
 
                  <li class="{{ Request::is('departments*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.departments.index') }}"><i style="font-size: 14px" class="fa fa-users"></i><span class="nav-label">Departments</span></a>
+                    <a href="{{ route('admin.departments.index') }}"><i style="font-size: 14px" class="fa fa-users"></i><span class="nav-label">Faculties</span></a>
                  </li>
 
                  <li class="{{ Request::is('subjects*') ? 'active' : '' }}">
@@ -110,12 +110,12 @@
                     <a href="{{ route('libraries.index') }}"><i style="font-size: 18px" class="fa fa-book" aria-hidden="true"></i><span class="nav-label">Library</span></a>
                 </li>
 
-                <li class="{{ Request::is('video/*') ? 'active' : '' }}">
+                <li class="{{ Request::is('video*') ? 'active' : '' }}">
                     <a href="{{ route('video.index') }}"><i style="font-size: 18px" class="fa fa-file-video-o" aria-hidden="true"></i><span class="nav-label">Videos</span></a>
                 </li>
 
                 <li class="{{ Request::is('events') ? 'active' : '' }}">
-                    <a href="{{ route('events.index') }}"><i style="font-size: 18px" class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">Events</span></a>
+                    <a href="{{ route('events.index') }}"><i style="font-size: 18px" class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">Routines</span></a>
                 </li>
             @endif
         </ul>

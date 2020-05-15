@@ -13,7 +13,7 @@ class UserController extends Controller
     	$perPage = request()->perPage ?: 10;
         $keyword = request()->keyword;
 
-    	$users = new User();
+    	$users = User::with('department');
 
     	if ($keyword){
     		$keyword = '%'.$keyword.'%';
