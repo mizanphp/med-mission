@@ -19,9 +19,15 @@
     {{--Social icon--}}
     <link href="{{ asset('admin/css/plugins/bootstrapSocial/bootstrap-social.css') }}" rel="stylesheet">
 
+    @stack('extra-css')
+
     <style>
         body{
             color: black;
+        }
+        .ibox-content{
+            border-style: none;
+            box-shadow: 1px 0 20px rgba(0,0,0,.08);
         }
     </style>
 
@@ -34,11 +40,13 @@
     </div>
 </body>
 
-@yield('custom-js')
-
 <script src="{{ asset('admin/js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('admin/js/bootstrap.min.js') }}"></script>
+
 <!-- iCheck -->
 <script src="{{ asset('admin/js/plugins/iCheck/icheck.min.js') }}"></script>
+
+@yield('custom-js')
 
 <script>
     $(document).ready(function () {

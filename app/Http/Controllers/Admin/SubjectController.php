@@ -15,7 +15,7 @@ class SubjectController extends Controller
         $perPage = request()->perPage ?: 10;
         $keyword = request()->keyword;
 
-        $subjects = new Subject();
+        $subjects = Subject::with('departments');
 
         if ($keyword){
             $subjects = $subjects->where('name', 'like', '%'.request()->keyword.'%')

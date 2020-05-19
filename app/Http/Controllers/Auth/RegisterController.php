@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Model\Department;
+use App\Model\Package;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\View\View;
 
 class RegisterController extends Controller
 {
-
-
     use RegistersUsers;
 
     /**
@@ -37,12 +39,13 @@ class RegisterController extends Controller
     /**
      * Show the application registration form.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function showRegistrationForm()
     {
         $departments = Department::latest()->get();
-        return view('auth.register', compact('departments'));
+        $packages = Package::latest()->get();
+        return view('auth.register', compact('departments', 'packages'));
     }
 
     /**
@@ -53,31 +56,28 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        if ($data['account_type_id'] == 1) {
-            return Validator::make($data, [
-                'payment_type_id' => ['required']
-            ]);
-        }
-
         return Validator::make($data, [
-            'department_id' => ['required'],
-            'name'      => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone'     => ['required', 'string', 'max:255', 'unique:users'],
-            'password'  => ['required', 'string', 'min:8', 'confirmed'],
+            'department_id'   => ['required'],
+            'name'            => ['required', 'string', 'max:255'],
+            'last_name'       => ['required', 'string', 'max:255'],
+            'email'           => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone'           => ['required', 'string', 'max:255', 'unique:users'],
+            'password'        => ['required', 'string', 'min:8', 'confirmed'],
             'account_type_id' => ['required'],
-            'agree' => ['required']
+            'payment_type_id' => ['required_if:account_type_id,==,1'],
+            'package_id'      => ['required_if:account_type_id,==,1'],
+            'agree'           => ['required']
+        ],[
+            'payment_type_id.required_if' => 'The payment type field is required.',
+            'package_id.required_if'      => 'The package type field is required.'
         ]);
-
-
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
     protected function create(array $data)
     {
@@ -88,15 +88,16 @@ class RegisterController extends Controller
 
         return User::create([
             'department_id'     => $data['department_id'],
-            'role_id'     => 2,
-            'account_type_id' => $data['account_type_id'],
-            'name'        => $data['name'],
-            'last_name'   => $data['last_name'],
-            'email'       => $data['email'],
-            'phone'       => $data['phone'],
-            'password'    => Hash::make($data['password']),
-            'expire_date' => Carbon::today()->addMonths(12)->format('Y-m-d'),
-            'is_paid' => 0
+            'role_id'           => 2,
+            'account_type_id'   => $data['account_type_id'],
+            'package_id'        => $data['package_id'],
+            'name'              => $data['name'],
+            'last_name'         => $data['last_name'],
+            'email'             => $data['email'],
+            'phone'             => $data['phone'],
+            'password'          => Hash::make($data['password']),
+            'expire_date'       => Carbon::today()->addMonths(12)->format('Y-m-d'),
+            'is_paid'           => 0
         ]);
     }
 }

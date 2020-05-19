@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Package;
 use Auth;
 use Carbon\Carbon;
 use DB;
@@ -40,8 +41,10 @@ class SslCommerzPaymentController extends Controller
         # Let's say, your oder transaction informations are saving in a table called "payments"
         # In "payments" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
+        $package_price = Package::find(auth()->user()->package_id)->select('price')->first();
+
         $post_data = array();
-        $post_data['total_amount'] = '1000'; # You cant not pay less than 10
+        $post_data['total_amount'] = $package_price['price']; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = Session::get('payment_tran_id') ?? uniqid(); // tran_id must be unique
 

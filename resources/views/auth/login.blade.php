@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        <div class="ibox-content">
+        <div class="ibox-content shadow">
 
             <div style="text-align: center">
                 <img alt="image" src="{{ asset('admin/img/logo.png') }}" width="166" />

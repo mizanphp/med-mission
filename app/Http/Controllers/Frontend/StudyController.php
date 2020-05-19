@@ -16,6 +16,7 @@ class StudyController extends Controller
 {
     public function showSelectSubject()
     {
+        // handle warning message
         Session::forget('limit_cross');
 
         Session::put('question_paper_info', []);
@@ -53,6 +54,7 @@ class StudyController extends Controller
 
         Session::put('question_paper_info', []);
         Session::put('question_paper_info', $question_paper_info);
+
         return redirect()->route('study.question');
     }
 

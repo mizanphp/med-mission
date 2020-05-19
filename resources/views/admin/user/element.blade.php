@@ -9,6 +9,19 @@
     </div>
 
     <div class="form-group">
+        <label>Packages</label>
+        <select class="form-control" name="package_id">
+            <option value="">Select Package</option>
+            @foreach($packages as $package)
+                <option value="{{ $package->id }}" {{ $user->package_id == $package->id ? 'selected' : ''}}>
+                    {{ $package->name }}
+                </option>
+            @endforeach
+        </select>
+        @error('package_id') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+    </div>
+
+    <div class="form-group">
         <div class="col-sm-2 no-padding">
             <label>Status</label>
         </div>

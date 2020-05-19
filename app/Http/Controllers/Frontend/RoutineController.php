@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\ExamNotification;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class RoutineController extends Controller
 {
     public function index(){
 

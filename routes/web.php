@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Main website redirection
+Route::get('/register/{package}', 'Frontend\MainSiteRedirectController@redirectToRegister')
+    ->where(['package' => 'basic|model|complete']);
+
 //User routes............
 Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Frontend'], function(){
 
@@ -49,7 +53,7 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
     Route::post('practice/finished', 'PracticeController@finished')->name('practice.question.finished');
     Route::post('practice/restart', 'PracticeController@restart')->name('practice.question.restart');
 
-    //examination
+    //Examination
     Route::get('examination', 'ExaminationController@prepareExam')->name('examination.prepare');
     Route::get('examination/start/{exam_notification_id}', 'ExaminationController@startExam')->name('examination.start');
     Route::get('examination/question', 'ExaminationController@question')->name('examination.question');
@@ -57,10 +61,16 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
     Route::get('examination/summery', 'PracticeController@summery')->name('examination.summery');
     Route::post('examination/finished', 'PracticeController@finished')->name('examination.question.finished');
     Route::get('examination/top-scorer', 'TopScorerController@index')->name('examination.topScorer');
+
+    //Library
     Route::get('libraries', 'LibraryController@index')->name('libraries.index');
+
+    //Video
     Route::get('video', 'VideoController@index')->name('video.index');
     Route::get('video/{subject}', 'VideoController@videos')->name('video.video-list');
-    Route::get('events', 'EventController@index')->name('events.index');
+
+    //Routines
+    Route::get('routines', 'RoutineController@index')->name('routines.index');
 });
 
 

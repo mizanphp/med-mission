@@ -36,13 +36,28 @@
                                                     <div>True False</div>
                                                 @endif
 
-                                                <div class="">
-                                                    <input name="options_true[]" value="{{ $option->id }}" {{  isset($true_correct_answers) && in_array($option->id, $true_correct_answers) ? 'checked' : '' }} type="checkbox"> &nbsp;&nbsp;&nbsp;
-                                                    <input name="options_false[]" value="{{ $option->id }}" {{  isset($false_correct_answers) && in_array($option->id, $false_correct_answers) ? 'checked' : '' }} type="checkbox"> &nbsp;&nbsp;&nbsp;
-                                                    <label>
-                                                        <i></i> {{ $option->option }}
-                                                    </label>
+                                                <div class="row" style="margin-top: 5px">
+                                                    <div class="col-xs-4 col-md-1" style="padding-right: 0">
+                                                        <input class="i-checks" name="options_true[]" value="{{ $option->id }}"
+                                                           {{  isset($true_correct_answers) && in_array($option->id, $true_correct_answers) ? 'checked' : '' }}
+                                                           type="checkbox"
+                                                        > &nbsp;&nbsp;
+                                                        <input class="i-checks" name="options_false[]" value="{{ $option->id }}"
+                                                           {{  isset($false_correct_answers) && in_array($option->id, $false_correct_answers) ? 'checked' : '' }}
+                                                           type="checkbox"
+                                                        > &nbsp;&nbsp;
+                                                    </div>
+                                                    <div class="col-xs-8 col-md-11" style="padding-left: 0">
+                                                        <label>{{ $option->option }}</label>
+                                                    </div>
                                                 </div>
+                                                {{--<div>
+                                                    <label>
+                                                        <input class="i-checks" name="options_true[]" value="{{ $option->id }}" {{  isset($true_correct_answers) && in_array($option->id, $true_correct_answers) ? 'checked' : '' }} type="checkbox"> &nbsp;&nbsp;
+                                                        <input class="i-checks" name="options_false[]" value="{{ $option->id }}" {{  isset($false_correct_answers) && in_array($option->id, $false_correct_answers) ? 'checked' : '' }} type="checkbox"> &nbsp;&nbsp;
+                                                        {{ $option->option }}
+                                                    </label>
+                                                </div>--}}
                                                 <?php $i++; ?>
                                             @endforeach
                                         @endif

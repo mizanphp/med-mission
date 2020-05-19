@@ -9,37 +9,36 @@
                     </div>
 
                     @auth
-                    <span>
-                        <img alt="image" class="img-circle avater_logo" src="{{ asset('admin/img/admin.png') }}" />
-                    </span>
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ ucfirst(Auth::user()->name) .' '. Auth::user()->last_name }}</strong>
-                        </span> <span class="text-muted text-xs block">{{ Auth::user()->role_id == 1 ? 'Administrator' : 'Student'}}<b class="caret"></b></span> </span>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="{{ route('profile') }}"><i class="fa fa-user-circle"></i> Profile</a></li>
-                        @if(auth()->user()->role_id != 1)
-                            <li><a href="{{ route('user.renew') }}"><i class="fa fa-refresh"></i> Renew Subscription</a></li>
-                        @endif
-                        <li><a href="{{ route('password.change') }}"><i class="fa fa-key"></i> Change Password</a></li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out"></i> Log out
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
+                        <span>
+                            <img alt="image" class="img-circle avater_logo" src="{{ asset('admin/img/admin.png') }}" />
+                        </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ ucfirst(Auth::user()->name) .' '. Auth::user()->last_name }}</strong>
+                            </span> <span class="text-muted text-xs block">{{ Auth::user()->role_id == 1 ? 'Administrator' : 'Student'}}<b class="caret"></b></span> </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="{{ route('profile') }}"><i class="fa fa-user-circle"></i> Profile</a></li>
+                            @if(auth()->user()->role_id != 1)
+                                <li><a href="{{ route('user.renew') }}"><i class="fa fa-refresh"></i> Renew Subscription</a></li>
+                            @endif
+                            <li><a href="{{ route('password.change') }}"><i class="fa fa-key"></i> Change Password</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out"></i> Log out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
                     @endauth
                 </div>
                 <div class="logo-element">
-                    IN+
+                    <img alt="image" src="{{ asset('admin/img/favicon.png') }}" width="28px" />
                 </div>
             </li>
-
 
             @if(Auth::check() && Auth::user()->role_id == 1)
 
@@ -114,8 +113,8 @@
                     <a href="{{ route('video.index') }}"><i style="font-size: 18px" class="fa fa-file-video-o" aria-hidden="true"></i><span class="nav-label">Videos</span></a>
                 </li>
 
-                <li class="{{ Request::is('events') ? 'active' : '' }}">
-                    <a href="{{ route('events.index') }}"><i style="font-size: 18px" class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">Routines</span></a>
+                <li class="{{ Request::is('routines') ? 'active' : '' }}">
+                    <a href="{{ route('routines.index') }}"><i style="font-size: 18px" class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">Routines</span></a>
                 </li>
             @endif
         </ul>
