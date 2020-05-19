@@ -13,6 +13,9 @@
 
     <div class="wrapper wrapper-content animated">
         <div class="row">
+
+            @include('flash-messages.flash-messages')
+
             @if(count($subjects) > 0)
                 @foreach($subjects as $subject)
                     <a href="{{ route('video.video-list', $subject->code) }}" class="color-success">
@@ -20,7 +23,8 @@
                             <div class="ibox">
                                 <div class="ibox-content" style="border-style: none!important;">
                                     <h3 style="color: black">{{ $subject->name }}</h3>
-                                    <div class="stat-percent font-bold text-navy">{{ $subject->videos_count }} <i class="fa fa-file-video-o"></i></div>
+                                    <div class="stat-percent font-bold text-navy">{{ $subject->videos_count }} <i
+                                            class="fa fa-file-video-o"></i></div>
                                     <span style="color: black">Total Videos</span>
                                 </div>
                             </div>

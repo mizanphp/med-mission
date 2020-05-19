@@ -64,8 +64,6 @@ class QuestionController extends Controller
         if ($question_template_id = $request->question_template_id) {
             $question_template = QuestionTemplate::where('id', $question_template_id)->first();
 
-            $request['subject_id'] = $question_template->subject_id;
-
             $total_questions = Question::where('question_template_id', $question_template_id)->count();
 
             if($question_template->total_questions <= $total_questions ){
@@ -186,8 +184,6 @@ class QuestionController extends Controller
         if ($question_template_id = $request->question_template_id) {
 
             $question_template = QuestionTemplate::where('id', $question_template_id)->first();
-
-            $request['subject_id'] = $question_template->subject_id;
 
             $total_questions = Question::where('question_template_id', $question_template_id)
                 ->where('id', '!=', $question->id)

@@ -1,5 +1,5 @@
 <div class="row no-margins">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         @if($message = Session::get('success'))
             <div class="alert alert-success alert-dismissable">
                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>

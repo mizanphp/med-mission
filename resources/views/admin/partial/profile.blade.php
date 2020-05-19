@@ -1,5 +1,13 @@
 @extends('layouts.master')
 
+@push('extra-links')
+    <style>
+        .warning_message .col-lg-6 {
+            width: 100%!important;
+        }
+    </style>
+@endpush
+
 @section('content')
 
     <div class="row wrapper border-bottom white-bg page-heading">
@@ -24,6 +32,13 @@
                         <form class="form-horizontal" method="POST" action="{{ route('profile.update', $user->id) }}">
                             @csrf
                             @method('PUT')
+
+                            <div class="form-group no-margins">
+                                <label class="col-lg-2 control-label"></label>
+                                <div class="col-lg-6 no-padding warning_message">
+                                    @include('flash-messages.flash-messages')
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">First Name<span class="required-star"> *</span></label>

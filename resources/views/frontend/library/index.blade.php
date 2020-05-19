@@ -14,6 +14,9 @@
                     <div class="ibox-content">
                         <div class="row" style="margin-bottom: 10px">
                             <div class="col-sm-12">
+
+                                @include('flash-messages.flash-messages')
+
                                 <iframe
                                     id="iframe"
                                     src="https://drive.google.com/embeddedfolderview?id=1n5kNq2Lmu9XizLY_UvOqBH4rcRSkmJV4#list"

@@ -46,6 +46,9 @@
                     <div class="ibox-content">
                         <div class="row" style="margin-bottom: 10px">
                             <div class="col-sm-12">
+
+                                @include('flash-messages.flash-messages')
+
                                 <div id='calendar'></div>
                             </div>
                         </div>
