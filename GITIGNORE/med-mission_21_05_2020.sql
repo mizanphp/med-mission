@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 12, 2020 at 04:12 PM
+-- Generation Time: May 21, 2020 at 11:35 AM
 -- Server version: 8.0.20
--- PHP Version: 7.3.17-1+ubuntu18.04.1+deb.sury.org+1
+-- PHP Version: 7.3.18-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -492,7 +492,7 @@ CREATE TABLE `department_subject` (
 
 INSERT INTO `department_subject` (`id`, `department_id`, `subject_id`, `created_at`, `updated_at`) VALUES
 (8, 1, 122, NULL, NULL),
-(9, 1, 123, NULL, NULL);
+(10, 57, 123, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -697,7 +697,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2020_02_26_214642_add_social_field_to_users_table', 8),
 (23, '2020_03_06_230036_create_jobs_table', 9),
 (25, '2020_05_08_125421_create_department_subject_table', 10),
-(27, '2020_05_09_232555_create_videos_table', 11);
+(27, '2020_05_09_232555_create_videos_table', 11),
+(28, '2020_05_17_162610_create_packages_table', 12);
 
 -- --------------------------------------------------------
 
@@ -45125,6 +45126,30 @@ INSERT INTO `option_question` (`id`, `question_id`, `option_id`, `correct_answer
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `packages`
+--
+
+CREATE TABLE `packages` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `packages`
+--
+
+INSERT INTO `packages` (`id`, `name`, `slug`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'Basic', 'basic', '2000', '2020-05-17 10:57:54', '2020-05-17 10:57:54'),
+(2, 'Model', 'model', '3000', '2020-05-17 10:57:54', '2020-05-17 10:57:54'),
+(3, 'Complete', 'complete', '4000', '2020-05-17 10:57:54', '2020-05-17 10:57:54');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -45140,7 +45165,8 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('aalmamun417@gmail.com', '$2y$10$Lyquu7NpROrHXhu9Z7TtfedmJOMDge7jzotgMJivAie2jmxb/qBr2', '2020-03-08 02:46:57'),
-('admin@test.com', '$2y$10$jRl9Kwh3Pykg1b039m.KIOdXQOAbLpJGNPWtNFCgg9UMkABFe9y16', '2020-04-08 14:40:22');
+('admin@test.com', '$2y$10$jRl9Kwh3Pykg1b039m.KIOdXQOAbLpJGNPWtNFCgg9UMkABFe9y16', '2020-04-08 14:40:22'),
+('student@test.com', '$2y$10$481Oz1dIOKmY6gVs373gm.vQVVHhEpFHc.DGFU7Rh9Q9EVuzgFVqS', '2020-05-16 07:37:38');
 
 -- --------------------------------------------------------
 
@@ -45172,7 +45198,15 @@ INSERT INTO `payments` (`id`, `user_id`, `amount`, `status`, `transaction_id`, `
 (36, 52, 1000, 'Complete', '5e5e92de44ba4', 'BDT', '2020-03-04 04:24:46', NULL),
 (37, 75, 1000, 'Canceled', '5ea454a9ca03e', 'BDT', '2020-04-26 01:18:01', NULL),
 (38, 77, 1000, 'Pending', '5ea6bdaf786d7', 'BDT', '2020-04-27 21:10:39', NULL),
-(39, 79, 1000, 'Canceled', '5eaceb79564a7', 'BDT', '2020-05-02 13:39:37', NULL);
+(39, 79, 1000, 'Canceled', '5eaceb79564a7', 'BDT', '2020-05-02 13:39:37', NULL),
+(40, 91, 1000, 'Pending', '5ebed77d1d8aa', 'BDT', '2020-05-15 17:55:09', NULL),
+(41, 91, 1000, 'Pending', '5ebedb799e63e', 'BDT', '2020-05-15 18:12:09', NULL),
+(42, 91, 1000, 'Pending', '5ebedbfccb0ed', 'BDT', '2020-05-15 18:14:20', NULL),
+(43, 92, 1000, 'Pending', '5ebedc2c3b3a8', 'BDT', '2020-05-15 18:15:08', NULL),
+(44, 92, 1000, 'Pending', '5ebedc442f01a', 'BDT', '2020-05-15 18:15:32', NULL),
+(45, 92, 1000, 'Pending', '5ebedcdbdaf8d', 'BDT', '2020-05-15 18:18:03', NULL),
+(46, 93, 1000, 'Canceled', '5ebedd133564e', 'BDT', '2020-05-15 18:18:59', NULL),
+(47, 2, 2000, 'Pending', '5ec3c6f2c7e33', 'BDT', '2020-05-19 11:45:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -45201,7 +45235,7 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `question_template_id`, `subject_id`, `question_type_id`, `student_type_id`, `question`, `slug`, `description`, `image`, `is_active`, `is_deleted`, `created_at`, `updated_at`) VALUES
-(3, NULL, 8, 2, 1, 'Intermediate filament vimentin is present in', 'intermediate-filament-vimentin-is-present-in', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem.', NULL, 1, 0, '2020-02-09 20:12:22', '2020-03-27 04:28:31'),
+(3, NULL, 123, 2, 1, 'Intermediate filament vimentin is present in', 'intermediate-filament-vimentin-is-present-in', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem.', NULL, 1, 0, '2020-02-09 20:12:22', '2020-03-27 04:28:31'),
 (4, NULL, 8, 2, 1, 'Golgi apparatus is concerned with', 'golgi-apparatus-is-concerned-with', NULL, NULL, 1, 0, '2020-02-09 20:41:03', '2020-03-27 04:28:19'),
 (5, NULL, 8, 2, 1, 'Structures devoid of sweat gland are', 'structures-devoid-of-sweat-gland-are', NULL, NULL, 1, 0, '2020-02-09 20:41:49', '2020-03-27 04:28:09'),
 (7, NULL, 8, 2, 1, 'Sweat glands are absent on the', 'sweat-glands-are-absent-on-the', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem.', NULL, 1, 0, '2020-02-09 21:48:24', '2020-03-27 04:28:02'),
@@ -49784,7 +49818,7 @@ INSERT INTO `questions` (`id`, `question_template_id`, `subject_id`, `question_t
 (4571, NULL, 94, 2, 3, 'Necroptosis', 'necroptosis', NULL, NULL, 1, 0, '2020-04-15 00:14:34', '2020-04-15 00:14:34'),
 (4572, NULL, 94, 2, 3, 'Intracellular accumulation of cholesterol occurs in', 'intracellular-accumulation-of-cholesterol-occurs-in', NULL, NULL, 1, 0, '2020-04-15 00:16:14', '2020-04-15 00:16:14'),
 (4573, NULL, 94, 2, 3, 'Intracellular accumulations of cholesterol are secn in', 'intracellular-accumulations-of-cholesterol-are-secn-in', NULL, NULL, 1, 0, '2020-04-15 00:17:35', '2020-04-15 00:17:35'),
-(4574, 9, 4, 2, 3, 'Cellular aging is', 'cellular-aging-is', NULL, NULL, 1, 0, '2020-04-15 00:20:39', '2020-04-25 00:07:58');
+(4574, 9, 4, 2, 3, 'Cellular aging is', 'cellular-aging-is', NULL, NULL, 1, 0, '2020-04-15 00:20:39', '2020-05-19 13:55:11');
 
 -- --------------------------------------------------------
 
@@ -50005,11 +50039,12 @@ INSERT INTO `subjects` (`id`, `name`, `subject_code`, `code`, `is_active`, `is_d
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `department_id` bigint NOT NULL,
+  `department_id` bigint DEFAULT '0' COMMENT '1=basic, 2=model, 3=complete',
+  `package_id` bigint DEFAULT '0',
   `provider` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `provider_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role_id` bigint NOT NULL DEFAULT '2' COMMENT '1=admin, 2=student',
-  `account_type_id` int NOT NULL COMMENT '0=free, 1=paid',
+  `account_type_id` int NOT NULL DEFAULT '0' COMMENT '0=free, 1=paid',
   `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -50029,57 +50064,56 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `department_id`, `provider`, `provider_id`, `role_id`, `account_type_id`, `name`, `last_name`, `email`, `phone`, `address`, `email_verified_at`, `password`, `expire_date`, `is_paid`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 0, NULL, NULL, 1, 0, 'System', 'Adminstrator', 'admin@test.com', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, '2020-02-07 02:25:11', '2020-02-10 21:26:52'),
-(2, 1, NULL, NULL, 2, 1, 'Abdullah al', 'mamun', 'student@test.com', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 1, 1, NULL, '2020-02-07 02:25:11', '2020-03-01 01:33:24'),
-(3, 0, NULL, NULL, 2, 1, 'Mamun', 'Islam', 'aalmamun417@gmail.com', '4323432', NULL, NULL, '$2y$10$q5c66mDyuC9g9qvH4ohXt.jKUvaw1T9/INHVnv4IVJ2iLcG6FrA2K', '2022-05-04', 0, 1, NULL, '2020-02-07 19:59:16', '2020-02-28 04:15:07'),
-(15, 0, NULL, NULL, 2, 1, 'Saiful islam', 'rubel', 'rubel@gmail.com', '423432', NULL, NULL, '$2y$10$Me7F.nkvKMcxowuRq80WYeGdBUzcDOrBxHLImUISp20ihXuvUPzpK', '2021-02-22', 1, 1, NULL, '2020-02-22 05:15:59', '2020-02-22 05:15:59'),
-(19, 0, NULL, NULL, 2, 1, 'ewrerw', 'rewrw', 'rewrew@gmail.com', NULL, NULL, NULL, '$2y$10$5prutogqomYJINtUoS1AcenOrFSrXlt5Q/EsoYn6TOvJCE8BJ.r.y', '2021-02-22', 1, 1, NULL, '2020-02-23 02:21:53', '2020-02-23 02:21:53'),
-(20, 0, NULL, NULL, 2, 1, 'asdf', 'dfgdfhd', 'adasdfa@gmail.com', NULL, NULL, NULL, '$2y$10$EvRay609T9kyknvZd75iAeCszoGvhtM8yjEjeewG8leK0Ft6EU/rq', '2021-02-22', 1, 1, NULL, '2020-02-23 02:22:50', '2020-02-23 02:22:50'),
-(21, 0, NULL, NULL, 2, 1, 'dasdas', 'dasda', 'dsada@gmail.com', '432432', NULL, NULL, '$2y$10$R1f3d2K9olmQBKHnR.A.DeAEqvUo2txKwEmmU40ZNhaIbUDzpAeS.', '2021-02-22', 1, 1, NULL, '2020-02-23 02:25:58', '2020-02-23 02:25:58'),
-(28, 0, NULL, NULL, 2, 1, 'ghj', 'jgfhf', 'fdsfs@gmail.com', NULL, NULL, NULL, '$2y$10$KwUyJJreylnGIRLzVr3qF.qX46UYUZ/h1lSlPZODmcrnQ2Ci.6VRO', '2021-02-23', 1, 1, NULL, '2020-02-23 05:29:21', '2020-02-23 05:29:21'),
-(29, 0, NULL, NULL, 2, 1, 'dfghj', 'fghjhgfd', 'tesdasdast@gmail.com', '122123234253454', NULL, NULL, '$2y$10$mI5yiXNDuUhs81WgnhdYNuIh1e3lsjSlqhAiAaNFV2AyZ9gAozIJq', '2021-02-23', 1, 1, NULL, '2020-02-23 05:31:11', '2020-02-23 05:31:11'),
-(30, 0, NULL, NULL, 2, 1, 'dfghjh', 'hfghgf', 'tesfsdfdst@gmail.com', NULL, NULL, NULL, '$2y$10$DCmGNo9H81cVqCUWz/OtWOc5/QL0KEBMvDhRvk0oZFSSpSy3LwYTK', '2021-02-23', 1, 1, NULL, '2020-02-23 05:33:30', '2020-02-23 05:33:30'),
-(31, 0, NULL, NULL, 2, 1, 'fdgdfgdfg', 'gdfgfd', 'gdf@gmail.com', NULL, NULL, NULL, '$2y$10$O1TfQV2/xnW5DBLbtDAfBuE/Wtkt8HzdArXav.UTAtvHIvnViAyoO', '2021-02-23', 0, 1, NULL, '2020-02-23 05:43:39', '2020-02-23 05:43:39'),
-(32, 0, NULL, NULL, 2, 1, 'dghtdyt', 'utyutyu', 'utyu@gmail.com', NULL, NULL, NULL, '$2y$10$mye/Cs1AjTycU0sSiMPOk.8TY9FUh2/uZuwt8u0ekb3j1ziT5nUjG', '2021-02-26', 1, 1, NULL, '2020-02-27 00:42:40', '2020-02-27 00:42:40'),
-(37, 0, 'google', '116394973424154240822', 2, 0, 'Mizanur Rahman', NULL, 'fictionsoft50@gmail.com', NULL, NULL, NULL, NULL, '2021-02-27', 0, 1, NULL, '2020-02-28 04:01:17', '2020-02-28 04:01:17'),
-(39, 0, NULL, NULL, 2, 1, 'fhidsjfds', 'fdsf', 'sfddsf@gmail.com', NULL, NULL, NULL, '$2y$10$6F9Mxu4x5puZlOxi9seYXODlD/1mvCWW.Jwk7K8oHclVb4n2W1Rt6', '2021-02-27', 0, 1, NULL, '2020-02-28 04:27:18', '2020-02-28 04:27:18'),
-(40, 0, NULL, NULL, 2, 1, 'sdfvgbh', 'dsfhgdsifj', 'testfdsfds@gmail.com', NULL, NULL, NULL, '$2y$10$9rGWMaE398JwEfTbNcdXmeRiuXVanjSQjtjEYHBZw.SQNXTOMPI4G', '2021-02-27', 0, 1, NULL, '2020-02-28 04:31:04', '2020-02-28 04:31:04'),
-(42, 0, NULL, NULL, 2, 1, 'Abdullah Al', 'Noman', 'sdfgdfgleh@exonhost.com', '5435535', NULL, NULL, '$2y$10$vff.jEGQfl7wGDGnuK5lhuD54RYGd.La0v1P/LUDuBI3h5qHf4FSi', '2021-02-28', 1, 1, NULL, '2020-02-28 20:30:37', '2020-02-28 20:30:37'),
-(43, 0, NULL, NULL, 2, 1, 'yhrt', 'ryrt', 'yrt@gmail.com', '435353', NULL, NULL, '$2y$10$TdKoi7.43l9mwGOwa0AJS.GuxzicCPhY9mhF7brweD7C3VVq0RSqK', '2021-02-28', 0, 1, NULL, '2020-02-28 20:55:05', '2020-02-29 00:59:36'),
-(44, 0, NULL, NULL, 2, 1, 'dfghj', 'rwerfw', 'rwerew@test.com', '2345678', NULL, NULL, '$2y$10$e3jaq7jYrTrDIeJWNLulGORiPih0zMhnmjSQIIknikMXd3Bov0Eba', '2021-02-28', 0, 1, NULL, '2020-02-28 23:04:32', '2020-02-29 01:00:00'),
-(45, 0, NULL, NULL, 2, 1, 'fdgdfg dfgdgd', 'rewrew', 'rwerew@gmail.com', '43534', NULL, NULL, '$2y$10$QJG98r14K2dUW.8DplppZuv1uchQk3keV7RxTspoXGVQLjLgIBJie', '2021-02-28', 0, 1, NULL, '2020-02-29 02:27:31', '2020-02-29 02:27:31'),
-(46, 0, NULL, NULL, 2, 1, 'erw', 'rewr', 'fsdfds@gmail.com', '42423', NULL, NULL, '$2y$10$lFL5odmf1rsRwm0UhCvUJOgmIu1XOqGpymg0kUqhOy6xlzpiNo9bi', '2021-02-28', 0, 1, NULL, '2020-02-29 04:30:05', '2020-02-29 04:30:05'),
-(47, 0, NULL, NULL, 2, 1, 'dfsdfsfds', 'dsfdsfs', 'sfsfdsfd@blog.com', '232342424', NULL, NULL, '$2y$10$5JHdasgXOaJ4I3yKSh1XNuVHakKzEG1Jk4c6Ymopt/VxUsmoKK1RC', '2021-02-28', 0, 1, NULL, '2020-02-29 04:33:45', '2020-02-29 04:33:45'),
-(48, 0, NULL, NULL, 2, 1, 'sfdsfs', 'fsdf', 'sdfdsf@gmail.com', '424324', NULL, NULL, '$2y$10$R/cyM2gEP1jJEFjypf2OPe6lAqZTozmwlBYbgzRjV1HzB0ZsS5Yi2', '2021-02-28', 0, 1, NULL, '2020-02-29 04:39:25', '2020-02-29 04:39:25'),
-(49, 0, NULL, NULL, 2, 1, 'Abdul', 'Aziz', 'aziz97cse@gmail.com', '01797506292', NULL, NULL, '$2y$10$xitdQlIy438sp7lEi1qRAOVFN6V3ZIOjTlbOFulocYziOIN7H8MOS', '2021-03-03', 0, 1, NULL, '2020-03-04 03:08:36', '2020-03-04 03:08:36'),
-(50, 0, NULL, NULL, 2, 1, 'vxcvx', 'xvcxvcx', 'fsdfds@exonhost.com', '45678909876543', NULL, NULL, '$2y$10$vso8mUI6rTOZ.7UyiXf0t.qKyjuBPRVfB1gHs5ad4iGwXthAcp8wa', '2021-03-03', 1, 1, NULL, '2020-03-04 04:19:15', '2020-03-04 04:19:15'),
-(51, 0, NULL, NULL, 2, 1, 'Abdul', 'Aziz', 'aziz97tcse@gmail.com', '017975069292', NULL, NULL, '$2y$10$W3aSiau0pk6b2tDbFtLFs.l6t.MRY1taNKsl1e8Fmpf024P2lpN1G', '2021-03-03', 0, 1, NULL, '2020-03-04 04:23:26', '2020-03-04 04:23:26'),
-(52, 0, NULL, NULL, 2, 1, 'Abdul', 'Aziz', 'aziz97regtcse@gmail.com', '01765476975069292', NULL, NULL, '$2y$10$e1UXj4W3fbiCsQXKgTBjhuaHiyNZjEuGB3lIKABxJ9gx6WUIJ8JcG', '2021-03-03', 1, 1, NULL, '2020-03-04 04:24:34', '2020-03-27 00:58:51'),
-(53, 0, NULL, NULL, 2, 0, 'Alessandra', 'Alessandra', 'geogatedproject16@gmail.com', '6577873019', NULL, NULL, '$2y$10$nv7LKzigHypGEj5mUF6SCunxsq0OOPbRvSwFySff7sxQHEbrPIMye', '2021-03-12', 0, 1, NULL, '2020-03-12 04:41:24', '2020-03-27 13:45:43'),
-(54, 0, NULL, NULL, 1, 0, 'Mahfuzur', 'Rahman', 'mahfuz@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
-(58, 0, NULL, NULL, 1, 0, 'Mr', 'Asfak', 'asfak@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
-(60, 0, NULL, NULL, 1, 0, 'Mr', 'Himu', 'himu@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
-(62, 0, NULL, NULL, 1, 0, 'Mr', 'Awal', 'awal@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
-(64, 0, NULL, NULL, 1, 0, 'Med', 'Mission', 'office@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
-(66, 0, 'facebook', '1065746593815454', 2, 0, 'Habib Wahid', NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-17', 0, 1, NULL, '2020-04-18 02:38:56', '2020-04-18 02:38:56'),
-(68, 0, 'google', '116045286433832341837', 2, 0, 'Abdullah al mamun', NULL, 'abdullah.ssc13@gmail.com', NULL, NULL, NULL, NULL, '2021-04-17', 0, 1, NULL, '2020-04-18 02:48:42', '2020-04-18 02:48:42'),
-(69, 0, 'facebook', '2665799533546399', 2, 0, 'Mizanur Rahman', NULL, 'mizan92cse@yahoo.com', NULL, NULL, NULL, NULL, '2021-04-17', 0, 1, NULL, '2020-04-18 03:46:15', '2020-04-18 03:46:15'),
-(70, 0, 'google', '111104591769914997604', 2, 0, 'Mizanur Rahman', NULL, 'mizan92cse@gmail.com', NULL, NULL, NULL, NULL, '2021-04-17', 0, 1, NULL, '2020-04-18 03:54:37', '2020-04-18 03:54:37'),
-(71, 0, NULL, NULL, 2, 0, 'tawfik', 'alawi', 'taww002016@gmail.com', '00967774167296', NULL, NULL, '$2y$10$t/sSdVUu7S2r3BkLVN3J3eemcw4HZa1lnFTT4CL83/vYCmxTLWgfu', '2021-04-19', 0, 1, NULL, '2020-04-20 00:50:07', '2020-04-20 00:50:07'),
-(72, 0, NULL, NULL, 2, 0, 'me', 'me', 'me@gmail.com', '12345678', NULL, NULL, '$2y$10$CEj1s8OBGPwwlk/Q9EWVuOCNRoIEF7iZkCnMN3OLU/Y.L/ngQwYPm', '2021-04-22', 0, 1, NULL, '2020-04-22 18:31:05', '2020-04-22 18:31:05'),
-(73, 0, NULL, NULL, 2, 0, 'test', 'test', 'test@test.com', '9876543210', NULL, NULL, '$2y$10$yuxHlvC3PxozGYWCsDNtB.zHozKM4kxkTpfeL4Pb9ytrdksBbI5.K', '2021-04-22', 0, 1, NULL, '2020-04-22 22:12:56', '2020-04-22 22:12:56'),
-(74, 0, NULL, NULL, 2, 0, 'Rahul', 'Sharma', 'rahul26@gmail.com', '1234567890', NULL, NULL, '$2y$10$73VTnxpwb4H0lw5JHQ2tSOXS4frL3qCzWTnDuybVEEPiYAW8i4/5e', '2021-04-25', 0, 1, NULL, '2020-04-25 20:42:55', '2020-04-25 20:42:55'),
-(75, 0, NULL, NULL, 2, 1, 'Akbar', 'Himu', 'nilas.ahmed1@gmail.com', '01723431482', NULL, NULL, '$2y$10$YBgOjmF0ydsAQCJbO6pGyOweaL.ikmP6CbLTK7iVlrAQzgqxjfop2', '2021-04-25', 0, 1, NULL, '2020-04-26 01:16:30', '2020-04-26 01:16:30'),
-(76, 0, 'google', '111787552120147676585', 2, 0, 'Seyyedali Mirhosseini', NULL, 's.a.mirhosseini77@gmail.com', NULL, NULL, NULL, NULL, '2021-04-27', 0, 1, NULL, '2020-04-27 18:39:06', '2020-04-27 18:39:06'),
-(77, 0, 'google', '104752368090757322803', 2, 0, 'Márk Pintér', NULL, 'sitebuilder.body@gmail.com', NULL, NULL, NULL, NULL, '2021-04-27', 0, 1, NULL, '2020-04-27 21:09:54', '2020-04-27 21:09:54'),
-(78, 0, NULL, NULL, 2, 0, 'Gh', 'Hj', 'rahul@gmail.com', 'Vhj', NULL, NULL, '$2y$10$3Pqcej0vkttKUyQ2lqXcqubzfqUTvvX.KogvxodWx0NzsfKOuzRVO', '2021-04-28', 0, 1, NULL, '2020-04-28 19:01:13', '2020-04-28 19:01:13'),
-(79, 0, NULL, NULL, 2, 1, 'many', 'many', 'many@many.com', '7845213369', NULL, NULL, '$2y$10$NRLF1ZrMwG7/WUHm1PXj8OGaRs0opqyp9Oukj3PhhKKqVZEsBadyu', '2021-05-02', 0, 1, NULL, '2020-05-02 13:39:23', '2020-05-02 13:39:23'),
-(80, 0, 'google', '109732727063218208102', 2, 0, 'Fantastic Top 10', NULL, 'topfantastic86@gmail.com', NULL, NULL, NULL, NULL, '2021-05-02', 0, 1, NULL, '2020-05-02 18:31:54', '2020-05-02 18:31:54'),
-(81, 0, NULL, NULL, 2, 0, 'Jejjsjs', 'Jsjjsjs', 'jsjjsj@gmail.com', '99999999999', NULL, NULL, '$2y$10$14f/DgZNHfBTlPZoFJ4wdeqIYFOoY25usaJxJKyJFpypuw.CejgC.', '2021-05-02', 0, 1, NULL, '2020-05-03 00:00:22', '2020-05-03 00:00:22'),
-(82, 0, NULL, NULL, 2, 0, 'sagar', 'kc', 'sagar@sagar.com', '12345678781', NULL, NULL, '$2y$10$2wNIthFTtbt/31Jgjl3one84N2lwo7D7I85udI1zVmg8YWx65oWfW', '2021-05-07', 0, 1, NULL, '2020-05-07 14:44:42', '2020-05-07 14:44:42'),
-(83, 0, 'google', '110452570792755202955', 2, 0, 'Siddharth AD', NULL, 'sid.iitr.doms1@gmail.com', NULL, NULL, NULL, NULL, '2021-05-07', 0, 1, NULL, '2020-05-07 20:09:41', '2020-05-07 20:09:41'),
-(89, 41, NULL, NULL, 2, 1, 'fhgfh', 'gfhgfhf', 'teshgfhf@gmail.com', '435353', NULL, NULL, '$2y$10$PdD2YhRyFv5JnradbbiBLO9ZCjGRKNL22K2HLalywYFeWB8.p3kKC', '2021-05-12', 0, 1, NULL, '2020-05-12 16:11:01', '2020-05-12 16:11:01');
+INSERT INTO `users` (`id`, `department_id`, `package_id`, `provider`, `provider_id`, `role_id`, `account_type_id`, `name`, `last_name`, `email`, `phone`, `address`, `email_verified_at`, `password`, `expire_date`, `is_paid`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 0, 0, NULL, NULL, 1, 0, 'System', 'Adminstrator', 'admin@test.com', '12343545464', 'Dhaka, Bangladesh', NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, '2020-02-07 02:25:11', '2020-02-10 21:26:52'),
+(2, 57, 2, NULL, NULL, 2, 1, 'Abdullah Al', 'Mamun', 'student@test.com', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 1, 1, NULL, '2020-02-07 02:25:11', '2020-05-18 12:10:57'),
+(3, 0, 0, NULL, NULL, 2, 1, 'Mamun', 'Islam', 'aalmamun417@gmail.com', '4323432', NULL, NULL, '$2y$10$q5c66mDyuC9g9qvH4ohXt.jKUvaw1T9/INHVnv4IVJ2iLcG6FrA2K', '2022-05-04', 0, 1, NULL, '2020-02-07 19:59:16', '2020-02-28 04:15:07'),
+(15, 0, 0, NULL, NULL, 2, 1, 'Saiful islam', 'rubel', 'rubel@gmail.com', '423432', NULL, NULL, '$2y$10$Me7F.nkvKMcxowuRq80WYeGdBUzcDOrBxHLImUISp20ihXuvUPzpK', '2021-02-22', 1, 1, NULL, '2020-02-22 05:15:59', '2020-02-22 05:15:59'),
+(19, 0, 0, NULL, NULL, 2, 1, 'ewrerw', 'rewrw', 'rewrew@gmail.com', NULL, NULL, NULL, '$2y$10$5prutogqomYJINtUoS1AcenOrFSrXlt5Q/EsoYn6TOvJCE8BJ.r.y', '2021-02-22', 1, 1, NULL, '2020-02-23 02:21:53', '2020-02-23 02:21:53'),
+(20, 0, 0, NULL, NULL, 2, 1, 'asdf', 'dfgdfhd', 'adasdfa@gmail.com', NULL, NULL, NULL, '$2y$10$EvRay609T9kyknvZd75iAeCszoGvhtM8yjEjeewG8leK0Ft6EU/rq', '2021-02-22', 1, 1, NULL, '2020-02-23 02:22:50', '2020-02-23 02:22:50'),
+(21, 0, 0, NULL, NULL, 2, 1, 'dasdas', 'dasda', 'dsada@gmail.com', '432432', NULL, NULL, '$2y$10$R1f3d2K9olmQBKHnR.A.DeAEqvUo2txKwEmmU40ZNhaIbUDzpAeS.', '2021-02-22', 1, 1, NULL, '2020-02-23 02:25:58', '2020-02-23 02:25:58'),
+(28, 0, 0, NULL, NULL, 2, 1, 'ghj', 'jgfhf', 'fdsfs@gmail.com', NULL, NULL, NULL, '$2y$10$KwUyJJreylnGIRLzVr3qF.qX46UYUZ/h1lSlPZODmcrnQ2Ci.6VRO', '2021-02-23', 1, 1, NULL, '2020-02-23 05:29:21', '2020-02-23 05:29:21'),
+(29, 0, 0, NULL, NULL, 2, 1, 'dfghj', 'fghjhgfd', 'tesdasdast@gmail.com', '122123234253454', NULL, NULL, '$2y$10$mI5yiXNDuUhs81WgnhdYNuIh1e3lsjSlqhAiAaNFV2AyZ9gAozIJq', '2021-02-23', 1, 1, NULL, '2020-02-23 05:31:11', '2020-02-23 05:31:11'),
+(30, 0, 0, NULL, NULL, 2, 1, 'dfghjh', 'hfghgf', 'tesfsdfdst@gmail.com', NULL, NULL, NULL, '$2y$10$DCmGNo9H81cVqCUWz/OtWOc5/QL0KEBMvDhRvk0oZFSSpSy3LwYTK', '2021-02-23', 1, 1, NULL, '2020-02-23 05:33:30', '2020-02-23 05:33:30'),
+(31, 0, 0, NULL, NULL, 2, 1, 'fdgdfgdfg', 'gdfgfd', 'gdf@gmail.com', NULL, NULL, NULL, '$2y$10$O1TfQV2/xnW5DBLbtDAfBuE/Wtkt8HzdArXav.UTAtvHIvnViAyoO', '2021-02-23', 0, 1, NULL, '2020-02-23 05:43:39', '2020-02-23 05:43:39'),
+(32, 0, 0, NULL, NULL, 2, 1, 'dghtdyt', 'utyutyu', 'utyu@gmail.com', NULL, NULL, NULL, '$2y$10$mye/Cs1AjTycU0sSiMPOk.8TY9FUh2/uZuwt8u0ekb3j1ziT5nUjG', '2021-02-26', 1, 1, NULL, '2020-02-27 00:42:40', '2020-02-27 00:42:40'),
+(37, 0, 0, 'google', '116394973424154240822', 2, 0, 'Mizanur Rahman', NULL, 'fictionsoft50@gmail.com', NULL, NULL, NULL, NULL, '2021-02-27', 0, 1, NULL, '2020-02-28 04:01:17', '2020-02-28 04:01:17'),
+(39, 0, 0, NULL, NULL, 2, 1, 'fhidsjfds', 'fdsf', 'sfddsf@gmail.com', NULL, NULL, NULL, '$2y$10$6F9Mxu4x5puZlOxi9seYXODlD/1mvCWW.Jwk7K8oHclVb4n2W1Rt6', '2021-02-27', 0, 1, NULL, '2020-02-28 04:27:18', '2020-02-28 04:27:18'),
+(40, 0, 0, NULL, NULL, 2, 1, 'sdfvgbh', 'dsfhgdsifj', 'testfdsfds@gmail.com', NULL, NULL, NULL, '$2y$10$9rGWMaE398JwEfTbNcdXmeRiuXVanjSQjtjEYHBZw.SQNXTOMPI4G', '2021-02-27', 0, 1, NULL, '2020-02-28 04:31:04', '2020-02-28 04:31:04'),
+(42, 0, 0, NULL, NULL, 2, 1, 'Abdullah Al', 'Noman', 'sdfgdfgleh@exonhost.com', '5435535', NULL, NULL, '$2y$10$vff.jEGQfl7wGDGnuK5lhuD54RYGd.La0v1P/LUDuBI3h5qHf4FSi', '2021-02-28', 1, 1, NULL, '2020-02-28 20:30:37', '2020-02-28 20:30:37'),
+(43, 0, 0, NULL, NULL, 2, 1, 'yhrt', 'ryrt', 'yrt@gmail.com', '435353', NULL, NULL, '$2y$10$TdKoi7.43l9mwGOwa0AJS.GuxzicCPhY9mhF7brweD7C3VVq0RSqK', '2021-02-28', 0, 1, NULL, '2020-02-28 20:55:05', '2020-02-29 00:59:36'),
+(44, 0, 0, NULL, NULL, 2, 1, 'dfghj', 'rwerfw', 'rwerew@test.com', '2345678', NULL, NULL, '$2y$10$e3jaq7jYrTrDIeJWNLulGORiPih0zMhnmjSQIIknikMXd3Bov0Eba', '2021-02-28', 0, 1, NULL, '2020-02-28 23:04:32', '2020-02-29 01:00:00'),
+(45, 0, 0, NULL, NULL, 2, 1, 'fdgdfg dfgdgd', 'rewrew', 'rwerew@gmail.com', '43534', NULL, NULL, '$2y$10$QJG98r14K2dUW.8DplppZuv1uchQk3keV7RxTspoXGVQLjLgIBJie', '2021-02-28', 0, 1, NULL, '2020-02-29 02:27:31', '2020-02-29 02:27:31'),
+(46, 0, 0, NULL, NULL, 2, 1, 'erw', 'rewr', 'fsdfds@gmail.com', '42423', NULL, NULL, '$2y$10$lFL5odmf1rsRwm0UhCvUJOgmIu1XOqGpymg0kUqhOy6xlzpiNo9bi', '2021-02-28', 0, 1, NULL, '2020-02-29 04:30:05', '2020-02-29 04:30:05'),
+(47, 0, 0, NULL, NULL, 2, 1, 'dfsdfsfds', 'dsfdsfs', 'sfsfdsfd@blog.com', '232342424', NULL, NULL, '$2y$10$5JHdasgXOaJ4I3yKSh1XNuVHakKzEG1Jk4c6Ymopt/VxUsmoKK1RC', '2021-02-28', 0, 1, NULL, '2020-02-29 04:33:45', '2020-02-29 04:33:45'),
+(48, 0, 0, NULL, NULL, 2, 1, 'sfdsfs', 'fsdf', 'sdfdsf@gmail.com', '424324', NULL, NULL, '$2y$10$R/cyM2gEP1jJEFjypf2OPe6lAqZTozmwlBYbgzRjV1HzB0ZsS5Yi2', '2021-02-28', 0, 1, NULL, '2020-02-29 04:39:25', '2020-02-29 04:39:25'),
+(49, 0, 0, NULL, NULL, 2, 1, 'Abdul', 'Aziz', 'aziz97cse@gmail.com', '01797506292', NULL, NULL, '$2y$10$xitdQlIy438sp7lEi1qRAOVFN6V3ZIOjTlbOFulocYziOIN7H8MOS', '2021-03-03', 0, 1, NULL, '2020-03-04 03:08:36', '2020-03-04 03:08:36'),
+(50, 0, 0, NULL, NULL, 2, 1, 'vxcvx', 'xvcxvcx', 'fsdfds@exonhost.com', '45678909876543', NULL, NULL, '$2y$10$vso8mUI6rTOZ.7UyiXf0t.qKyjuBPRVfB1gHs5ad4iGwXthAcp8wa', '2021-03-03', 1, 1, NULL, '2020-03-04 04:19:15', '2020-03-04 04:19:15'),
+(51, 0, 0, NULL, NULL, 2, 1, 'Abdul', 'Aziz', 'aziz97tcse@gmail.com', '017975069292', NULL, NULL, '$2y$10$W3aSiau0pk6b2tDbFtLFs.l6t.MRY1taNKsl1e8Fmpf024P2lpN1G', '2021-03-03', 0, 1, NULL, '2020-03-04 04:23:26', '2020-03-04 04:23:26'),
+(52, 0, 0, NULL, NULL, 2, 1, 'Abdul', 'Aziz', 'aziz97regtcse@gmail.com', '01765476975069292', NULL, NULL, '$2y$10$e1UXj4W3fbiCsQXKgTBjhuaHiyNZjEuGB3lIKABxJ9gx6WUIJ8JcG', '2021-03-03', 1, 1, NULL, '2020-03-04 04:24:34', '2020-03-27 00:58:51'),
+(53, 0, 0, NULL, NULL, 2, 0, 'Alessandra', 'Alessandra', 'geogatedproject16@gmail.com', '6577873019', NULL, NULL, '$2y$10$nv7LKzigHypGEj5mUF6SCunxsq0OOPbRvSwFySff7sxQHEbrPIMye', '2021-03-12', 0, 1, NULL, '2020-03-12 04:41:24', '2020-03-27 13:45:43'),
+(54, 0, 0, NULL, NULL, 1, 0, 'Mahfuzur', 'Rahman', 'mahfuz@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
+(58, 0, 0, NULL, NULL, 1, 0, 'Mr', 'Asfak', 'asfak@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
+(60, 0, 0, NULL, NULL, 1, 0, 'Mr', 'Himu', 'himu@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
+(62, 0, 0, NULL, NULL, 1, 0, 'Mr', 'Awal', 'awal@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
+(64, 0, 0, NULL, NULL, 1, 0, 'Med', 'Mission', 'office@medmission.com.bd', NULL, NULL, NULL, '$2y$10$6I7MUhOKfTeZHBVRfJnDx.NfQ2kwlmekq7ilinXSDevpNVmZLe6uO', '2020-02-10', 0, 1, NULL, NULL, NULL),
+(68, 0, 0, 'google', '116045286433832341837', 2, 0, 'Abdullah al mamun', NULL, 'abdullah.ssc13@gmail.com', NULL, NULL, NULL, NULL, '2021-04-17', 0, 1, NULL, '2020-04-18 02:48:42', '2020-04-18 02:48:42'),
+(69, 0, 0, 'facebook', '2665799533546399', 2, 0, 'Mizanur Rahman', NULL, 'mizan92cse@yahoo.com', NULL, NULL, NULL, NULL, '2021-04-17', 0, 1, NULL, '2020-04-18 03:46:15', '2020-04-18 03:46:15'),
+(70, 0, 0, 'google', '111104591769914997604', 2, 0, 'Mizanur Rahman', NULL, 'mizan92cse@gmail.com', NULL, NULL, NULL, NULL, '2021-04-17', 0, 1, NULL, '2020-04-18 03:54:37', '2020-04-18 03:54:37'),
+(71, 0, 0, NULL, NULL, 2, 0, 'tawfik', 'alawi', 'taww002016@gmail.com', '00967774167296', NULL, NULL, '$2y$10$t/sSdVUu7S2r3BkLVN3J3eemcw4HZa1lnFTT4CL83/vYCmxTLWgfu', '2021-04-19', 0, 1, NULL, '2020-04-20 00:50:07', '2020-04-20 00:50:07'),
+(72, 0, 0, NULL, NULL, 2, 0, 'me', 'me', 'me@gmail.com', '12345678', NULL, NULL, '$2y$10$CEj1s8OBGPwwlk/Q9EWVuOCNRoIEF7iZkCnMN3OLU/Y.L/ngQwYPm', '2021-04-22', 0, 1, NULL, '2020-04-22 18:31:05', '2020-04-22 18:31:05'),
+(73, 0, 0, NULL, NULL, 2, 0, 'test', 'test', 'test@test.com', '9876543210', NULL, NULL, '$2y$10$yuxHlvC3PxozGYWCsDNtB.zHozKM4kxkTpfeL4Pb9ytrdksBbI5.K', '2021-04-22', 0, 1, NULL, '2020-04-22 22:12:56', '2020-04-22 22:12:56'),
+(74, 0, 0, NULL, NULL, 2, 0, 'Rahul', 'Sharma', 'rahul26@gmail.com', '1234567890', NULL, NULL, '$2y$10$73VTnxpwb4H0lw5JHQ2tSOXS4frL3qCzWTnDuybVEEPiYAW8i4/5e', '2021-04-25', 0, 1, NULL, '2020-04-25 20:42:55', '2020-04-25 20:42:55'),
+(75, 0, 0, NULL, NULL, 2, 1, 'Akbar', 'Himu', 'nilas.ahmed1@gmail.com', '01723431482', NULL, NULL, '$2y$10$YBgOjmF0ydsAQCJbO6pGyOweaL.ikmP6CbLTK7iVlrAQzgqxjfop2', '2021-04-25', 0, 1, NULL, '2020-04-26 01:16:30', '2020-04-26 01:16:30'),
+(76, 0, 0, 'google', '111787552120147676585', 2, 0, 'Seyyedali Mirhosseini', NULL, 's.a.mirhosseini77@gmail.com', NULL, NULL, NULL, NULL, '2021-04-27', 0, 1, NULL, '2020-04-27 18:39:06', '2020-04-27 18:39:06'),
+(77, 0, 0, 'google', '104752368090757322803', 2, 0, 'Márk Pintér', NULL, 'sitebuilder.body@gmail.com', NULL, NULL, NULL, NULL, '2021-04-27', 0, 1, NULL, '2020-04-27 21:09:54', '2020-04-27 21:09:54'),
+(78, 0, 0, NULL, NULL, 2, 0, 'Gh', 'Hj', 'rahul@gmail.com', 'Vhj', NULL, NULL, '$2y$10$3Pqcej0vkttKUyQ2lqXcqubzfqUTvvX.KogvxodWx0NzsfKOuzRVO', '2021-04-28', 0, 1, NULL, '2020-04-28 19:01:13', '2020-04-28 19:01:13'),
+(79, 0, 0, NULL, NULL, 2, 1, 'many', 'many', 'many@many.com', '7845213369', NULL, NULL, '$2y$10$NRLF1ZrMwG7/WUHm1PXj8OGaRs0opqyp9Oukj3PhhKKqVZEsBadyu', '2021-05-02', 0, 1, NULL, '2020-05-02 13:39:23', '2020-05-02 13:39:23'),
+(80, 0, 0, 'google', '109732727063218208102', 2, 0, 'Fantastic Top 10', NULL, 'topfantastic86@gmail.com', NULL, NULL, NULL, NULL, '2021-05-02', 0, 1, NULL, '2020-05-02 18:31:54', '2020-05-02 18:31:54'),
+(81, 0, 0, NULL, NULL, 2, 0, 'Jejjsjs', 'Jsjjsjs', 'jsjjsj@gmail.com', '99999999999', NULL, NULL, '$2y$10$14f/DgZNHfBTlPZoFJ4wdeqIYFOoY25usaJxJKyJFpypuw.CejgC.', '2021-05-02', 0, 1, NULL, '2020-05-03 00:00:22', '2020-05-03 00:00:22'),
+(82, 0, 0, NULL, NULL, 2, 0, 'sagar', 'kc', 'sagar@sagar.com', '12345678781', NULL, NULL, '$2y$10$2wNIthFTtbt/31Jgjl3one84N2lwo7D7I85udI1zVmg8YWx65oWfW', '2021-05-07', 0, 1, NULL, '2020-05-07 14:44:42', '2020-05-07 14:44:42'),
+(83, 0, 0, 'google', '110452570792755202955', 2, 0, 'Siddharth AD', NULL, 'sid.iitr.doms1@gmail.com', NULL, NULL, NULL, NULL, '2021-05-07', 0, 1, NULL, '2020-05-07 20:09:41', '2020-05-07 20:09:41'),
+(94, 39, 2, NULL, NULL, 2, 1, 'dsfsdfdsf', 'dsfdsfs', 'fdsfdsfdsfs@exonhost.com', '56546574', NULL, NULL, '$2y$10$MayItmDs3Ehmz6tgSw0N3uo77oq1aHFRwSa6JkQ5Q6K7TuKedyDne', '2021-05-17', 0, 1, NULL, '2020-05-17 11:51:33', '2020-05-18 12:08:42');
 
 -- --------------------------------------------------------
 
@@ -50102,10 +50136,8 @@ CREATE TABLE `videos` (
 --
 
 INSERT INTO `videos` (`id`, `subject_id`, `name`, `embed_code`, `thumbnail`, `created_at`, `updated_at`) VALUES
-(1, 123, 'This is a video name', '&lt;iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/hpK8PjnEnX8\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen&gt;&lt;/iframe&gt;', 'Fictionsoft-81589049879.jpg', '2020-05-09 18:44:39', '2020-05-10 08:15:02'),
-(3, 123, 'How to use jquery', '&lt;iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/FjnSHUYAOjY\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen&gt;&lt;/iframe&gt;', 'Fictionsoft-81589087647.jpg', '2020-05-10 05:10:54', '2020-05-10 09:49:57'),
-(4, 123, 'Why can\'t I get this to work. I\'m trying to do this within Wordpress.', '&lt;iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9nwp4vhOl54\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen&gt;&lt;/iframe&gt;', 'Fictionsoft-81589104386.jpg', '2020-05-10 09:53:06', '2020-05-10 10:01:19'),
-(5, 123, 'This is awesome and works great when all you need to do is stop a video from playing.', '&lt;iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/KGHP83GkjSc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen&gt;&lt;/iframe&gt;', 'Fictionsoft-81589104428.jpg', '2020-05-10 09:53:48', '2020-05-10 10:01:00');
+(6, 122, 'This is a video name', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eL7cS6Jtv7k\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'Fictionsoft-81589561522.jpg', '2020-05-15 16:50:41', '2020-05-15 16:53:40'),
+(7, 122, 'This is awesome and works great when all you need to do is stop a video from playing.', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/eL7cS6Jtv7k\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'Fictionsoft-81589561512.jpg', '2020-05-15 16:51:29', '2020-05-15 16:53:34');
 
 --
 -- Indexes for dumped tables
@@ -50170,6 +50202,12 @@ ALTER TABLE `options`
 -- Indexes for table `option_question`
 --
 ALTER TABLE `option_question`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `packages`
+--
+ALTER TABLE `packages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -50247,7 +50285,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `department_subject`
 --
 ALTER TABLE `department_subject`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `examinations`
@@ -50277,7 +50315,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `options`
@@ -50292,10 +50330,16 @@ ALTER TABLE `option_question`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23057;
 
 --
+-- AUTO_INCREMENT for table `packages`
+--
+ALTER TABLE `packages`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `questions`
@@ -50331,13 +50375,13 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

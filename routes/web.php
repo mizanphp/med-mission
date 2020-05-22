@@ -76,9 +76,12 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
         //Library
         Route::get('libraries', 'LibraryController@index')->name('libraries.index');
 
-        //Video
-        Route::get('video', 'VideoController@index')->name('video.index');
-        Route::get('video/{subject}', 'VideoController@videos')->name('video.video-list');
+        Route::group(['middleware' => ['checkDepartment']], function() {
+
+            //Video
+            Route::get('video', 'VideoController@index')->name('video.index');
+            Route::get('video/{subject}', 'VideoController@videos')->name('video.video-list');
+        });
 
         //Routines
         Route::get('routines', 'RoutineController@index')->name('routines.index');
@@ -123,6 +126,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
     //Payments
     Route::get('payments', 'PaymentController@index')->name('payments.index');
 
+    //Videos
     Route::resource('videos', 'VideoController');
 });
 

@@ -17,7 +17,7 @@ class CreateVideosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('subject_id');
             $table->string('name');
-            $table->string('embed_code', 999);
+            $table->text('embed_code');
             $table->string('thumbnail');
             $table->timestamps();
         });

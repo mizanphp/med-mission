@@ -43,6 +43,8 @@ class VideoController extends Controller
             'name' => 'required|max:255|unique:videos',
             'embed_code' => 'required',
             'img' => 'required'
+        ],[
+            'embed_code.required' => 'The URL field is required.'
         ]);
 
         if($request->img){
@@ -70,7 +72,6 @@ class VideoController extends Controller
         ]);
 
         if($request->img){
-
             $image = fileHandlerComponent::imageUpload($request->file('img'), 'img');
             $request['thumbnail'] = $image;
 

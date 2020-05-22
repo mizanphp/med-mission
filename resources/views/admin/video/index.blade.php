@@ -53,7 +53,7 @@
                                     <tr>
                                         <th>Subject</th>
                                         <th>Name</th>
-                                        <th>Embed Code</th>
+                                        <th>URL</th>
                                         <th class="text-center">Thumbnail</th>
                                         <th>Created At</th>
                                         <th class="text-center">Actions</th>

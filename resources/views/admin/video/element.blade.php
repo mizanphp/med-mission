@@ -24,10 +24,9 @@
         <div class="col-lg-7">
             <div class="form-group">
                 <label>
-                    Embed Code<span class="required-star"> *</span>
-                    <button class="btn btn-xs btn-primary" type="button" onclick="preview()">Preview</button>
+                    URL<span class="required-star"> *</span>
                 </label>
-                <textarea name="embed_code" id="textarea2" class="form-control" rows="6">{!! isset($video->embed_code) ? $video->embed_code : old('embed_code') !!}</textarea>
+                <input type="text" name="embed_code" value="{{ isset($video->embed_code) ? $video->embed_code : old('embed_code') }}" class="form-control">
                 @error('embed_code') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
             </div>
         </div>
@@ -36,7 +35,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="col-lg-7">
     <div class="form-group">
@@ -49,22 +47,6 @@
     </div>
 </div>
 
-@section('custom-js')
-    <script>
-        function preview() {
-
-            $('#preview').attr('src', '');
-
-            if(!$('#textarea2').val().trim()){
-                alert('Embed Code not found');
-                return
-            }
-
-            let src = $('#textarea2').val().split('src="')[1].split('"')[0];
-            $('#preview').attr('src', src).removeClass('hidden');
-        }
-    </script>
-@endsection
 
 
 
