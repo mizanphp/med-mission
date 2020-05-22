@@ -114,7 +114,7 @@
                 </li>
 
                 <li class="{{ Request::is('routines') ? 'active' : '' }}">
-                    <a href="{{ route('routines.index') }}"><i style="font-size: 18px" class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">Routines</span></a>
+                    <a href="{{ route('routines.index') }}"><i style="font-size: 18px" class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">Routine</span></a>
                 </li>
             @endif
         </ul>

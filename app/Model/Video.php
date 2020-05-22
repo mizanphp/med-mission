@@ -15,4 +15,25 @@ class Video extends Model
     public function subject(){
         return $this->belongsTo(Subject::class);
     }
+
+    protected $appends = ['video_id'];
+
+    public function getVideoIdAttribute()
+    {
+        return $this->youtubeId($this->embed_code);
+    }
+
+    function youtubeID($url){
+        if(strlen($url) > 11)
+        {
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match))
+            {
+                return $match[1];
+            }
+            else
+                return false;
+        }
+
+        return $url;
+    }
 }

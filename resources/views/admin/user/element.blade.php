@@ -23,6 +23,23 @@
 
     <div class="form-group">
         <div class="col-sm-2 no-padding">
+            <label>Is Paid</label>
+        </div>
+        <div class="col-sm-10 no-padding">
+            <div class="input-group">
+                <div class="i-checks">
+                    <label>
+                        <input name="is_paid" value="1" type="checkbox" {{ $user->is_paid == 1 ? 'checked' : '' }}>
+                        <i></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+        @error('is_paid') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2 no-padding">
             <label>Status</label>
         </div>
         <div class="col-sm-10 no-padding">
@@ -35,7 +52,7 @@
                 </div>
             </div>
         </div>
-        @error('Status') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
+        @error('status') <span class="help-block m-b-none text-danger">{{ $message }}</span> @enderror
     </div>
 
 </div>

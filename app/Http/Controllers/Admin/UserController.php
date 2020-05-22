@@ -42,6 +42,7 @@ class UserController extends Controller
         ]);
 
     	$request['expire_date'] = date('Y-m-d', strtotime($request->expire_date));
+    	$request['is_paid'] = $request->is_paid == 1 ?? 0;
     	$request['status'] = $request->status == 1 ?? 0;
 
         $user->update($request->all());

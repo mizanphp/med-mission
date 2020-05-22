@@ -18,6 +18,7 @@
         <div class="row">
             @if(count($subject->videos) > 0)
                 @foreach($subject->videos as $key => $video)
+
                     <div class="col-md-3">
                         <div class="ibox">
                             <div class="ibox-content product-box">
@@ -42,7 +43,11 @@
                                     <h4 class="modal-title pull-left">{{ $video->name }}</h4>
                                 </div>
                                 <div class="modal-body" style="padding: 20px">
-                                    {!! html_entity_decode($video->embed_code) !!}
+                                    <iframe width="560" height="315"
+                                        src="https://www.youtube.com/embed/{{ $video->video_id }}"
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                    </iframe>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>

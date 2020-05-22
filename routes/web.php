@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth', 'checkUserStatus'], 'namespace' => 'Front
             Route::get('video/{subject}', 'VideoController@videos')->name('video.video-list');
         });
 
-        //Routines
+        //Routine
         Route::get('routines', 'RoutineController@index')->name('routines.index');
     });
 });

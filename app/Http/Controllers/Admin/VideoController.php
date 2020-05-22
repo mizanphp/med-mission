@@ -69,6 +69,8 @@ class VideoController extends Controller
             'subject_id' => 'required',
             'name' => 'required|max:255|unique:videos,name,'.$video->id,
             'embed_code' => 'required'
+        ],[
+            'embed_code.required' => 'The URL field is required.'
         ]);
 
         if($request->img){
