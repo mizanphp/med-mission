@@ -29,7 +29,7 @@ class SubjectController extends Controller
 
     public function create()
     {
-        $departments = Department::latest()->get();
+        $departments = [];
         return view('admin.subject.create', compact('departments'));
     }
 
@@ -54,7 +54,7 @@ class SubjectController extends Controller
 
     public function edit(Subject $subject)
     {
-        $departments = Department::latest()->get();
+        $departments = $subject->departments;
 
         $subject_departments = array_map(function ($department) {
             return $department['id'];

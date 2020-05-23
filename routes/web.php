@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'as' => 'admin.', 'namespace' =
 	Route::resource('departments', 'DepartmentController');
     Route::get('departments/edit/{department}', 'DepartmentController@edit')->name('department.edit');
     Route::post('departments/update/{department}', 'DepartmentController@update')->name('department.update');
+    Route::get('get-department-list', 'DepartmentController@getDepartmentList')->name('get-department-list');
 
 	//Subjects
 	Route::resource('subjects', 'SubjectController');

@@ -67,4 +67,25 @@ class DepartmentController extends Controller
         $department->delete();
         return back()->with('successTMsg', 'Faculty has been deleted successfully');
     }
+
+    public function getDepartmentList(){
+
+        $term = request('term');
+
+        $departments = Department::where('is_active', 1)
+            ->where('name', 'like', '%'.$term.'%')
+            ->select('name', 'id')
+            ->take(5)
+            ->get();
+
+        $new_departments = [];
+
+        foreach ($departments as $department){
+            $new_departments[] = ['value' => $department->id, 'text' => $department->name];
+        }
+
+        info($new_departments);
+
+        return response()->json($new_departments);
+    }
 }
