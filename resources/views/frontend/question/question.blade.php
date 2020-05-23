@@ -132,14 +132,6 @@
 
                                                     </div>
 
-                                                    {{--<div class=" {{ $option_class }}">
-                                                        <input name="options_true[]" value="{{ $option->id }}" {{  isset($true_student_answer) && in_array($option->id, $true_student_answer) ? 'checked' : '' }} type="checkbox"> &nbsp;&nbsp;&nbsp;
-                                                        <input name="options_false[]" value="{{ $option->id }}" {{  isset($false_student_answer) && in_array($option->id, $false_student_answer) ? 'checked' : '' }} type="checkbox"> &nbsp;&nbsp;&nbsp;
-                                                        <label>
-                                                            <i></i> {{ $option->option }} <?php echo $answer_is ?>
-                                                        </label>
-                                                    </div>--}}
-
                                                 <?php $i++; ?>
                                             @endforeach
                                         @endif

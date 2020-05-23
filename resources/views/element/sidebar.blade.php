@@ -97,7 +97,7 @@
 
                 @if(Auth::check() and Auth::user()->account_type_id == 1)
                     <li class="{{ $current_controller == 'ExaminationController' ? 'active' : '' }}">
-                        <a href="{{ route('examination.prepare') }}"><i style="font-size: 18px" class="fa fa-thermometer-empty" aria-hidden="true"></i><span class="nav-label">Exam</span></a>
+                        <a href="{{ route('examination.prepare') }}"><i style="font-size: 18px" class="fa fa-user-md" aria-hidden="true"></i><span class="nav-label">Exam</span></a>
                     </li>
                 @endif
 
