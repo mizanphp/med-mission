@@ -6,7 +6,7 @@
         <div class="col-lg-8">
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ route('admin.users.index') }}"> User </a>
+                    <a href="{{ route('admin.users.index') }}"> Notice </a>
                 </li>
                 <li class="active">
                     <strong>Edit</strong>

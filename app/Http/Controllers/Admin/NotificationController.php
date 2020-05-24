@@ -50,6 +50,8 @@ class NotificationController extends Controller
             'notice' => 'required'
         ]);
 
+        dd($request->all());
+
         $start_date = $request->start_date;
         $question_template = QuestionTemplate::where('id', $request->question_template_id)->first();
         $notice = str_replace(['[[SUBJECT]]', '[[DATE-TIME]]'], [strtolower($question_template->subject->name), $start_date], $request->notice);

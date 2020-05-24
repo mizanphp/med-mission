@@ -5,7 +5,7 @@
         <div class="col-lg-8">
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ route('admin.subjects.index') }}">Notification</a>
+                    <a href="{{ route('admin.subjects.index') }}">Notice</a>
                 </li>
                 <li class="active">
                     <strong>Create</strong>
