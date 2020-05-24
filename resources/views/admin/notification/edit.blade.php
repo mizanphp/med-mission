@@ -21,7 +21,7 @@
                 <div class="ibox float-e-margins">
 
                     <div class="ibox-title">
-                        <h5>Update User</h5>
+                        <h5>Update Notice</h5>
                     </div>
 
                     <div class="ibox-content">

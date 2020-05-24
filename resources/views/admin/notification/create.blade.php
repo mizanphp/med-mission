@@ -20,7 +20,7 @@
                 <div class="ibox float-e-margins">
 
                     <div class="ibox-title">
-                        <h5>Create Notification</h5>
+                        <h5>Create Notice</h5>
                     </div>
 
                     <div class="ibox-content">
