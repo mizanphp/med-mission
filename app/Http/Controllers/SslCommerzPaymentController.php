@@ -18,7 +18,7 @@ class SslCommerzPaymentController extends Controller
         return view('payment');
     }
 
-    public function test(){
+    public function storePaymentTranId(){
         info(Session::get('payment_tran_id'));
 
         # Custom
@@ -33,7 +33,7 @@ class SslCommerzPaymentController extends Controller
     {
         $post_data['tran_id'] = Session::get('payment_tran_id') ?? uniqid(); // tran_id must be unique
 
-        $this->test();
+        $this->storePaymentTranId();
 
         //return redirect(url('http://facebook.com'));
 
@@ -44,7 +44,8 @@ class SslCommerzPaymentController extends Controller
         $package_price = Package::find(auth()->user()->package_id)->select('price')->first();
 
         $post_data = array();
-        $post_data['total_amount'] = $package_price['price']; # You cant not pay less than 10
+        $price = config('app.mode') === 'test' ? 10 : $package_price['price'];
+        $post_data['total_amount'] = $price; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = Session::get('payment_tran_id') ?? uniqid(); // tran_id must be unique
 

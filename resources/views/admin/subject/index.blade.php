@@ -61,7 +61,11 @@
                                         <tr>
                                             <td>{{ ucfirst($subject->name) }}</td>
                                             <td>{{ $subject->subject_code }}</td>
-                                            <td>{{ $subject->departments()->first()->name ?? '' }}</td>
+                                            <td>
+                                                @foreach($subject->departments as $departmet)
+                                                    {{ $departmet->name }}{{ $loop->last ? '' : ',' }}
+                                                @endforeach
+                                            </td>
                                             <td>{{ date_format($subject->created_at, 'd-m-Y') }}</td>
                                             <td class="text-center">
 
